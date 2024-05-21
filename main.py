@@ -1,17 +1,20 @@
-# age =input("请输入年龄：")
+import matplotlib.pyplot as plt
+import numpy as np
 
-name ="island"
-print(name)
-print(type(name))
-
-# int  整数
-result = 10
-# 1. 先使用 type() 函数获得变量result的数据类型 , 2, 使用print函数输出这个数据类型
-print(type(result))  # <class 'int'>
-
-num_str = "14.22"
-f= eval(num_str)
-print(f)
-
-r1=7//3
-print(r1)
+# # 使用 pyplot 创建一个简单的线图
+# plt.plot([1, 2, 3, 4], [1, 4, 9, 16])
+#
+# # 显示图形
+# plt.show()
+#
+# # 使用面向对象的API创建图形
+# fig, ax = plt.subplots()  # 创建一个图形对象 fig 和一个坐标轴对象 ax
+#
+# # 使用 ax 添加一条线
+# ax.plot([1, 2, 3, 4], [1, 4, 9, 16])
+#
+# # 设置坐标轴的标题
+# ax.set_title('Simple Plot')
+#
+# # 显示图形
+# plt.show()
