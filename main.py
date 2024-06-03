@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-
+import torch
 # # 使用 pyplot 创建一个简单的线图
 # plt.plot([1, 2, 3, 4], [1, 4, 9, 16])
 #
@@ -18,3 +18,5 @@ import numpy as np
 #
 # # 显示图形
 # plt.show()
+
+
