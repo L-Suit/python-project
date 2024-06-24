@@ -1,0 +1,6 @@
+train: "train.txt"
+val: "val.txt"
+
+names:
+  0: "person"
+  1: "car"

@@ -1,6 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
+import torchvision
+
+scratch_net = torchvision.models.resnet18()
+
 # # 使用 pyplot 创建一个简单的线图
 # plt.plot([1, 2, 3, 4], [1, 4, 9, 16])
 #
