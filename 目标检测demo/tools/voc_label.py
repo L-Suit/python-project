@@ -6,11 +6,14 @@ import xml.etree.ElementTree as ET
 import os
 from os import getcwd
 
-dataset_root = "D:/实验室/dateset/ip102/Detection/VOC2007"
+# dataset_root = "D:/dataset/ip102/Detection/VOC2007"
+dataset_root = "D:/dataset/ip102/Detection/VOC2007"
 sets = ['trainval', 'test']
 classes = ["a", "b"]  # 改成自己的类别
 abs_path = os.getcwd()
 print(abs_path)
+
+error_label = []
 
 
 def convert(size, box):
@@ -28,20 +31,29 @@ def convert(size, box):
 
 
 def convert_annotation(image_id):
+    print(f"转换样本{image_id}")
     in_file = open(dataset_root + '/Annotations/%s.xml' % (image_id), encoding='UTF-8')
     out_file = open(dataset_root + '/Annotations-txt/%s.txt' % (image_id), 'w')
-    tree = ET.parse(in_file)
+
+    # 解析xml,校验格式，错误则跳过并记录
+    try:
+        tree = ET.parse(in_file)
+    except Exception as e:
+        print(e)
+        error_label.append(image_id)
+        return
+
     root = tree.getroot()
     size = root.find('size')
     w = int(size.find('width').text)
     h = int(size.find('height').text)
     for obj in root.iter('object'):
         # difficult = obj.find('difficult').text
-        difficult = obj.find('Difficult').text
-        cls = obj.find('name').text
-        if cls not in classes or int(difficult) == 1:
+        difficult = obj.find('difficult').text
+        # 如果是困难标注（遮挡，模糊），则跳过
+        if int(difficult) == 1:
             continue
-        cls_id = classes.index(cls)
+        cls_id = obj.find('name').text
         xmlbox = obj.find('bndbox')
         b = (float(xmlbox.find('xmin').text), float(xmlbox.find('xmax').text), float(xmlbox.find('ymin').text),
              float(xmlbox.find('ymax').text))
@@ -58,8 +70,9 @@ def convert_annotation(image_id):
 
 for image_set in sets:
     image_ids = open(dataset_root + '/ImageSets/Main/%s.txt' % (image_set)).read().strip().split()
-    list_file = open(dataset_root + '/Annotations-txt/%s.txt' % (image_set), 'w')
+    list_file = open(dataset_root + '/ImageSets/yolo/%s.txt' % (image_set), 'w')
     for image_id in image_ids:
         list_file.write(dataset_root + '/JPEGImages/%s.jpg\n' % (image_id))
         convert_annotation(image_id)
     list_file.close()
+    print(f"错误样本有：{error_label}")
