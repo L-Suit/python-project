@@ -6,7 +6,8 @@ import xml.etree.ElementTree as ET
 import os
 from os import getcwd
 
-sets = ['train', 'val', 'test']
+dataset_root = "D:/实验室/dateset/ip102/Detection/VOC2007"
+sets = ['trainval', 'test']
 classes = ["a", "b"]  # 改成自己的类别
 abs_path = os.getcwd()
 print(abs_path)
@@ -27,8 +28,8 @@ def convert(size, box):
 
 
 def convert_annotation(image_id):
-    in_file = open('data/mydata/xml/%s.xml' % (image_id), encoding='UTF-8')
-    out_file = open('data/mydata/labels/%s.txt' % (image_id), 'w')
+    in_file = open(dataset_root + '/Annotations/%s.xml' % (image_id), encoding='UTF-8')
+    out_file = open(dataset_root + '/Annotations-txt/%s.txt' % (image_id), 'w')
     tree = ET.parse(in_file)
     root = tree.getroot()
     size = root.find('size')
@@ -55,13 +56,10 @@ def convert_annotation(image_id):
         out_file.write(str(cls_id) + " " + " ".join([str(a) for a in bb]) + '\n')
 
 
-wd = getcwd()
 for image_set in sets:
-    if not os.path.exists('data/mydata/labels/'):
-        os.makedirs('data/mydata/labels/')
-    image_ids = open('data/mydata/dataSet/%s.txt' % (image_set)).read().strip().split()
-    list_file = open('paper_data/%s.txt' % (image_set), 'w')
+    image_ids = open(dataset_root + '/ImageSets/Main/%s.txt' % (image_set)).read().strip().split()
+    list_file = open(dataset_root + '/Annotations-txt/%s.txt' % (image_set), 'w')
     for image_id in image_ids:
-        list_file.write(abs_path + '/mydata/images/%s.jpg\n' % (image_id))
+        list_file.write(dataset_root + '/JPEGImages/%s.jpg\n' % (image_id))
         convert_annotation(image_id)
     list_file.close()
