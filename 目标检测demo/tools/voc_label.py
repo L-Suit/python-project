@@ -33,7 +33,7 @@ def convert(size, box):
 def convert_annotation(image_id):
     print(f"转换样本{image_id}")
     in_file = open(dataset_root + '/Annotations/%s.xml' % (image_id), encoding='UTF-8')
-    out_file = open(dataset_root + '/Annotations-txt/%s.txt' % (image_id), 'w')
+    out_file = open(dataset_root + '/labels/%s.txt' % (image_id), 'w')
 
     # 解析xml,校验格式，错误则跳过并记录
     try:
@@ -70,9 +70,9 @@ def convert_annotation(image_id):
 
 for image_set in sets:
     image_ids = open(dataset_root + '/ImageSets/Main/%s.txt' % (image_set)).read().strip().split()
-    list_file = open(dataset_root + '/ImageSets/yolo/%s.txt' % (image_set), 'w')
+    list_file = open(dataset_root + '/%s.txt' % (image_set), 'w')
     for image_id in image_ids:
-        list_file.write(dataset_root + '/JPEGImages/%s.jpg\n' % (image_id))
+        list_file.write(dataset_root + '/images/%s.jpg\n' % (image_id))
         convert_annotation(image_id)
     list_file.close()
     print(f"错误样本有：{error_label}")
