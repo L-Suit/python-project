@@ -9,7 +9,7 @@ opt = parser.parse_args()
 
 if opt.train:
 	os.system("python train.py \
-		--dataroot ../final_dataset \
+		--dataroot ./final_dataset \
 		--no_dropout \
 		--name enlightening \
 		--model single \
@@ -34,7 +34,7 @@ if opt.train:
 		--instance_norm 0 \
 		--vgg 1 \
         --vgg_choose relu5_1 \
-		--gpu_ids 0,1,2 \
+		--gpu_ids 0 \
 		--display_port=" + opt.port)
 
 elif opt.predict:

@@ -1,4 +1,6 @@
 import time
+
+from visdom.server import run_server
 from options.train_options import TrainOptions
 from data.data_loader import CreateDataLoader
 from models.models import create_model

@@ -13,7 +13,6 @@ checkpoints/
 .vscode
 predict/
 results/
-model/
 .pth
 .png
 .jpg
