@@ -9,7 +9,7 @@ from util.visualizer import Visualizer
 def get_config(config):
     import yaml
     with open(config, 'r') as stream:
-        return yaml.load(stream)
+        return yaml.safe_load(stream)
 
 opt = TrainOptions().parse()
 config = get_config(opt.config)
