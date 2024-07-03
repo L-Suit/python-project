@@ -9,6 +9,7 @@ __pycache__/
 # Distribution / packaging
 checkpoints/
 test_dataset/
+ablation/
 .DS_Store
 ._.DS_Store
 .vscode
