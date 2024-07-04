@@ -94,10 +94,8 @@ def main():
     logging.info("model size = %f", MB)
     print(MB)
 
-
-    train_low_data_names = 'Your train dataset'
+    train_low_data_names = 'D:/dataset/SCI-low-light'
     TrainDataset = MemoryFriendlyLoader(img_dir=train_low_data_names, task='train')
-
 
     test_low_data_names = './data/medium'
     TestDataset = MemoryFriendlyLoader(img_dir=test_low_data_names, task='test')
