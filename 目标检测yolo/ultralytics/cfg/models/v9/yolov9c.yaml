@@ -3,7 +3,7 @@
 # 618 layers, 25590912 parameters, 104.0 GFLOPs
 
 # Parameters
-nc: 80 # number of classes
+nc: 102 # number of classes
 
 # GELAN backbone
 backbone:
