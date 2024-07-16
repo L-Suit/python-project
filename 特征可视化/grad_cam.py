@@ -74,7 +74,7 @@ if __name__ == '__main__':
     # model = create_model(num_classes=5, has_logits=False)
 
     # load model weights
-    model_weight_path = "D:\Pycharm_project\python-project\目标检测yolo\yolov8n.pt"
+    model_weight_path = "D:\Pycharm-project\pythonProject\目标检测yolo\yolov8n.pt"
     model.load_state_dict(torch.load(model_weight_path, map_location='cpu'))
 
     model.eval()
