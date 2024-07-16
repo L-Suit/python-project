@@ -134,7 +134,7 @@ class yolov8_heatmap:
 
         target = yolov8_target(backward_type, conf_threshold, ratio)
         target_layers = [model.model[l] for l in layer]
-        method = eval(method)(model, target_layers, use_cuda=device.type == 'cuda')
+        method = eval(method)(model, target_layers, use_cuda=True)
         method.activations_and_grads = ActivationsAndGradients(model, target_layers, None)
 
         colors = np.random.uniform(0, 255, size=(len(model_names), 3)).astype(np.int)
@@ -205,10 +205,10 @@ class yolov8_heatmap:
 
 def get_params():
     params = {
-        'weight': 'D:\Pycharm_project\python-project\目标检测yolo\yolov8n.pt', # 现在只需要指定权重即可,不需要指定cfg
+        'weight': 'D:\Pycharm-project\pythonProject\目标检测yolo\yolov8n.pt', # 现在只需要指定权重即可,不需要指定cfg
         'device': 'cuda:0',
         'method': 'HiResCAM', # GradCAMPlusPlus, GradCAM, XGradCAM, EigenCAM, HiResCAM, LayerCAM, RandomCAM, EigenGradCAM
-        'layer': 'model.model[8]',# 后续不断测试
+        'layer':  [8],  # 'model.model[8]', 后续不断测试
         'backward_type': 'class', # class, box, all
         'conf_threshold': 0.2, # 0.2
         'ratio': 0.02, # 0.02-0.1
