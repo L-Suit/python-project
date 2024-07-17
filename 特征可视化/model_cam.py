@@ -1,10 +1,7 @@
 import warnings
-warnings.filterwarnings('ignore')
-warnings.simplefilter('ignore')
 import torch, yaml, cv2, os, shutil, sys
 import numpy as np
-np.random.seed(0)
-import matplotlib.pyplot as plt
+
 from tqdm import trange
 from PIL import Image
 from ultralytics.nn.tasks import attempt_load_weights
@@ -13,6 +10,10 @@ from ultralytics.utils.ops import xywh2xyxy, non_max_suppression
 from pytorch_grad_cam import GradCAMPlusPlus, GradCAM, XGradCAM, EigenCAM, HiResCAM, LayerCAM, RandomCAM, EigenGradCAM
 from pytorch_grad_cam.utils.image import show_cam_on_image, scale_cam_image
 from pytorch_grad_cam.activations_and_gradients import ActivationsAndGradients
+
+warnings.filterwarnings('ignore')
+warnings.simplefilter('ignore')
+np.random.seed(0)
 
 def letterbox(im, new_shape=(640, 640), color=(114, 114, 114), auto=True, scaleFill=False, scaleup=True, stride=32):
     # Resize and pad image while meeting stride-multiple constraints
@@ -207,8 +208,8 @@ def get_params():
     params = {
         'weight': 'D:\Pycharm-project\pythonProject\目标检测yolo\yolov8n.pt', # 现在只需要指定权重即可,不需要指定cfg
         'device': 'cuda:0',
-        'method': 'HiResCAM', # GradCAMPlusPlus, GradCAM, XGradCAM, EigenCAM, HiResCAM, LayerCAM, RandomCAM, EigenGradCAM
-        'layer':  [8],  # 'model.model[8]', 后续不断测试
+        'method': 'GradCAM', # GradCAMPlusPlus, GradCAM, XGradCAM, EigenCAM, HiResCAM, LayerCAM, RandomCAM, EigenGradCAM
+        'layer':  [9],  # 'model.model[8]', 后续不断测试
         'backward_type': 'class', # class, box, all
         'conf_threshold': 0.2, # 0.2
         'ratio': 0.02, # 0.02-0.1
@@ -219,5 +220,4 @@ def get_params():
 
 if __name__ == '__main__':
     model = yolov8_heatmap(**get_params())
-    # model(r'/home/hjj/Desktop/dataset/dataset_visdrone/VisDrone2019-DET-test-dev/images/9999947_00000_d_0000026.jpg', 'result')
-    model(r'D:\dataset\ip102\Detection\VOC2007\images\IP000000003.jpg', 'cam_result')
+    model(r'D:\dataset\ip102\Detection\VOC2007\images\IP000000008.jpg', 'cam_result')
