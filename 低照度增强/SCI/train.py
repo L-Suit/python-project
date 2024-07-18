@@ -29,6 +29,9 @@ parser.add_argument('--save', type=str, default='EXP/', help='location of the da
 
 args = parser.parse_args()
 
+train_low_data_names = 'D:/dataset/SCI-low-light'
+test_low_data_names = './data/medium'
+
 os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
 
 args.save = args.save + '/' + 'Train-{}'.format(time.strftime("%Y%m%d-%H%M%S"))
@@ -94,10 +97,7 @@ def main():
     logging.info("model size = %f", MB)
     print(MB)
 
-    train_low_data_names = 'D:/dataset/SCI-low-light'
     TrainDataset = MemoryFriendlyLoader(img_dir=train_low_data_names, task='train')
-
-    test_low_data_names = './data/medium'
     TestDataset = MemoryFriendlyLoader(img_dir=test_low_data_names, task='test')
 
     train_queue = torch.utils.data.DataLoader(

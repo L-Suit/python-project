@@ -2,6 +2,7 @@
 # lsh project
 /data
 cam_result/
+results/
 
 
 # Byte-compiled / optimized / DLL files
