@@ -53,6 +53,7 @@ def train(config):
 	DCE_net.train()
 
 	for epoch in range(config.num_epochs):
+		print("Epoch: ", epoch)
 		for iteration, img_lowlight in enumerate(train_loader):
 
 			img_lowlight = img_lowlight.cuda()
@@ -70,9 +71,7 @@ def train(config):
 			
 			# best_loss
 			loss =  Loss_TV + loss_spa + loss_col + loss_exp
-			#
 
-			
 			optimizer.zero_grad()
 			loss.backward()
 			torch.nn.utils.clip_grad_norm(DCE_net.parameters(),config.grad_clip_norm)
@@ -80,31 +79,28 @@ def train(config):
 
 			if ((iteration+1) % config.display_iter) == 0:
 				print("Loss at iteration", iteration+1, ":", loss.item())
-			if ((iteration+1) % config.snapshot_iter) == 0:
-				
-				torch.save(DCE_net.state_dict(), config.snapshots_folder + "Epoch" + str(epoch) + '.pth') 		
-
-
+		if ((epoch+1) % config.snapshot_per_epoch) == 0:
+			torch.save(DCE_net.state_dict(), config.snapshots_folder + "Epoch" + str(epoch) + '.pth')
 
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 
 	# Input Parameters
-	parser.add_argument('--lowlight_images_path', type=str, default="data/train_data/")
+	parser.add_argument('--lowlight_images_path', type=str, default="D:/dataset/low-light/")
 	parser.add_argument('--lr', type=float, default=0.0001)
 	parser.add_argument('--weight_decay', type=float, default=0.0001)
 	parser.add_argument('--grad_clip_norm', type=float, default=0.1)
 	parser.add_argument('--num_epochs', type=int, default=10)
 	parser.add_argument('--train_batch_size', type=int, default=8)
-	parser.add_argument('--val_batch_size', type=int, default=4)
+	parser.add_argument('--val_batch_size', type=int, default=8)
 	parser.add_argument('--num_workers', type=int, default=2)
-	parser.add_argument('--display_iter', type=int, default=5)
-	parser.add_argument('--snapshot_iter', type=int, default=5)
+	parser.add_argument('--display_iter', type=int, default=10)
+	parser.add_argument('--snapshot_per_epoch', type=int, default=2)
 	# 当前的时间和日期为文件夹名
-	parser.add_argument('--snapshots_folder', type=str, default="snapshots/"+time.strftime("%Y-%m-%d %H:%M", time.localtime()))
-	parser.add_argument('--load_pretrain', type=bool, default= False)
-	parser.add_argument('--pretrain_dir', type=str, default= "pretrained_model/Epoch99.pth")
+	parser.add_argument('--snapshots_folder', type=str, default="snapshots/"+time.strftime("%Y-%m-%d_%H-%M/", time.localtime()))
+	parser.add_argument('--load_pretrain', type=bool, default=True)
+	parser.add_argument('--pretrain_dir', type=str, default="pretrained_model/Epoch99.pth")
 
 	config = parser.parse_args()
 
