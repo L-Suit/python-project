@@ -4,7 +4,7 @@
 cam_result/
 低照度增强/SCI/results/
 低照度增强/Zero-DCE/snapshots/
-results/
+目标检测/results/
 
 
 # Byte-compiled / optimized / DLL files
@@ -147,7 +147,6 @@ dmypy.json
 .pyre/
 
 # datasets and projects
-datasets/
 runs/
 wandb/
 .DS_Store
