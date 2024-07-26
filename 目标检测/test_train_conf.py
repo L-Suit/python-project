@@ -154,7 +154,7 @@ train_dataloader = dict(  # 训练 dataloader 配置
         type=dataset_type,
         data_root=data_root,
         ann_file='coco/voc07_trainval.json',  # 标注文件路径
-        data_prefix=dict(img='voc2007/images/'),  # 图片路径前缀
+        data_prefix=dict(img=''),  # 图片路径前缀
         filter_cfg=dict(filter_empty_gt=True, min_size=32)  # 图片和标注的过滤配置
         ))  # 这是由之前创建的 train_pipeline 定义的数据处理流程。
 val_dataloader = dict(  # 验证 dataloader 配置
@@ -169,7 +169,7 @@ val_dataloader = dict(  # 验证 dataloader 配置
         type=dataset_type,
         data_root=data_root,
         ann_file='coco/voc07_test.json',
-        data_prefix=dict(img='voc2007/images/'),
+        data_prefix=dict(img=''),
         test_mode=True  # 开启测试模式，避免数据集过滤图片和标注
         ))
 test_dataloader = val_dataloader  # 测试 dataloader 配置
