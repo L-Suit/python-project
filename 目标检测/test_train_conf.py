@@ -31,7 +31,7 @@ auto_scale_lr = dict(enable=False, base_batch_size=16)
 
 # 数据集
 dataset_type = 'CocoDataset'  # 数据集类型，这将被用来定义数据集。
-data_root = 'D:\dataset\ip102\Detection/'  # 数据的根路径。
+data_root = 'D:\dataset\ip102\Detection/COCO/'  # 数据的根路径。
 metainfo = {
     'classes': ('rice leaf roller',
                 'rice leaf caterpillar',
@@ -135,10 +135,25 @@ metainfo = {
                 'Rhytidodera bowrinii white',
                 'Sternochetus frigidus',
                 'Cicadellidae',
-                )
-    # 'palette': [
-    #     (220, 20, 60),
-    # ]
+                ),
+    'palette': [
+        (255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0), (0, 255, 255), (255, 0, 255), (192, 192, 192),
+        (255, 165, 0), (255, 255, 255), (0, 128, 0), (128, 0, 0), (128, 0, 128), (0, 128, 128), (128, 128, 0),
+        (64, 224, 208), (255, 69, 0), (222, 85, 14), (245, 222, 179), (152, 245, 100), (100, 230, 152),
+        (230, 100, 245),
+        (100, 245, 152), (230, 245, 100), (245, 100, 230), (152, 100, 230), (245, 230, 152), (152, 245, 100),
+        (100, 152, 245), (230, 245, 152), (245, 152, 100), (152, 230, 100), (100, 245, 230), (230, 152, 245),
+        (100, 230, 245), (245, 100, 152), (245, 230, 245), (152, 245, 245), (230, 100, 100), (100, 230, 100),
+        (230, 230, 100), (100, 100, 230), (100, 230, 230), (230, 100, 230), (230, 230, 230), (20, 186, 174),
+        (186, 20, 174), (20, 174, 186), (174, 186, 20), (186, 174, 20), (174, 20, 186), (20, 186, 20),
+        (20, 20, 186), (186, 20, 20), (20, 174, 20), (174, 20, 20), (20, 20, 174), (174, 20, 174), (20, 174, 20),
+        (20, 20, 20), (255, 99, 71), (70, 255, 99), (99, 71, 255), (71, 255, 99), (255, 70, 99), (99, 255, 71),
+        (70, 99, 255), (99, 255, 255), (255, 99, 70), (71, 99, 255), (255, 71, 99), (99, 255, 70), (70, 255, 71),
+        (71, 70, 255), (99, 255, 255), (255, 255, 99), (70, 71, 255), (71, 255, 70), (255, 71, 200), (255, 255, 71),
+        (71, 255, 255), (255, 70, 71), (70, 255, 255), (71, 99, 70), (99, 70, 71), (70, 71, 99), (71, 99, 255),
+        (99, 255, 71), (255, 71, 99), (71, 255, 255), (255, 255, 71), (71, 255, 150), (70, 71, 99), (71, 99, 70),
+        (99, 70, 255), (255, 99, 71), (71, 70, 255), (255, 99, 255), (99, 255, 255), (255, 71, 255), (255, 255, 99)
+    ]
 }
 
 
@@ -153,8 +168,8 @@ train_dataloader = dict(  # 训练 dataloader 配置
     dataset=dict(  # 训练数据集的配置
         type=dataset_type,
         data_root=data_root,
-        ann_file='coco/voc07_trainval.json',  # 标注文件路径
-        data_prefix=dict(img=''),  # 图片路径前缀
+        ann_file='annotations/voc07_train.json',  # 标注文件路径
+        data_prefix=dict(img='D:\dataset\ip102\Detection\COCO/train2017/'),  # 图片路径前缀
         filter_cfg=dict(filter_empty_gt=True, min_size=32)  # 图片和标注的过滤配置
         ))  # 这是由之前创建的 train_pipeline 定义的数据处理流程。
 val_dataloader = dict(  # 验证 dataloader 配置
@@ -168,8 +183,8 @@ val_dataloader = dict(  # 验证 dataloader 配置
     dataset=dict(
         type=dataset_type,
         data_root=data_root,
-        ann_file='coco/voc07_test.json',
-        data_prefix=dict(img=''),
+        ann_file='annotations/voc07_val.json',
+        data_prefix=dict(img='D:\dataset\ip102\Detection\COCO/val2017/'),
         test_mode=True  # 开启测试模式，避免数据集过滤图片和标注
         ))
 test_dataloader = val_dataloader  # 测试 dataloader 配置
@@ -177,7 +192,7 @@ test_dataloader = val_dataloader  # 测试 dataloader 配置
 # 评测器
 val_evaluator = dict(  # 验证过程使用的评测器
     type='CocoMetric',  # 用于评估检测和实例分割的 AR、AP 和 mAP 的 coco 评价指标
-    ann_file=data_root + 'coco/voc07_test.json',  # 标注文件路径
+    ann_file=data_root + 'annotations/voc07_val.json',  # 标注文件路径
     metric=['bbox'],  # 需要计算的评价指标，`bbox` 用于检测，`segm` 用于实例分割
     format_only=False)
 test_evaluator = val_evaluator  # 测试过程使用的评测器
