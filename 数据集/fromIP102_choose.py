@@ -1,3 +1,6 @@
+# 从ip102中选取两类林业害虫组成新数据集，还没有完成。。。
+# 后续如果要自组建数据集再用
+
 import json
 import shutil
 import os
