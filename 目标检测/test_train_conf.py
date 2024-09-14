@@ -31,7 +31,8 @@ auto_scale_lr = dict(enable=False, base_batch_size=16)
 
 # 数据集
 dataset_type = 'CocoDataset'  # 数据集类型，这将被用来定义数据集。
-data_root = 'D:\dataset\ip102\Detection/COCO/'  # 数据的根路径。
+# data_root = 'D:\dataset\ip102\Detection/COCO/'  # 主机数据的根路径。
+data_root = 'E:\lsh\dataset\ip102\Detection\COCO/'  # 实验室服务器数据的根路径。
 metainfo = {
     'classes': ('rice leaf roller',
                 'rice leaf caterpillar',
