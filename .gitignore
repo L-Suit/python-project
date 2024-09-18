@@ -7,6 +7,10 @@ cam_result/
 目标检测/results/
 
 
+# 配置文件
+.idea/misc.xml
+.idea/pythonProject.iml
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
