@@ -19,13 +19,15 @@ def process_annotations(json_file, images_folder, labels_folder):
     for annotation in tqdm(annotations):
         category_id = annotation['category_id']
         image_id = annotation['image_id']
+        label_file_name, _ = os.path.splitext(imgID_to_name[image_id])
 
         # 获取图片尺寸
-        file_path = os.path.join(images_folder, str(image_id) + '.jpg')
+        file_path = os.path.join(images_folder, str(label_file_name) + '.jpg')
         try:
             with Image.open(file_path) as img:
                 width, height = img.size
         except FileNotFoundError:
+            print(f"Image {file_path} not found.")
             continue
 
         # 计算归一化的坐标
@@ -38,7 +40,7 @@ def process_annotations(json_file, images_folder, labels_folder):
         # 写入标签文件，标签编号减1
         label = category_id - 1
         label_content = f"{label} {x_center} {y_center} {w_norm} {h_norm}"
-        label_file_name, _ = os.path.splitext(imgID_to_name[image_id])
+
         label_file_path = os.path.join(labels_folder, str(label_file_name) + '.txt')
         with open(label_file_path, 'a') as file:
             file.write(label_content + '\n')
