@@ -38,8 +38,8 @@ def process_annotations(json_file, images_folder, labels_folder):
         # 写入标签文件，标签编号减1
         label = category_id - 1
         label_content = f"{label} {x_center} {y_center} {w_norm} {h_norm}"
-
-        label_file_path = os.path.join(labels_folder, str(imgID_to_name[image_id]) + '.txt')
+        label_file_name, _ = os.path.splitext(imgID_to_name[image_id])
+        label_file_path = os.path.join(labels_folder, str(label_file_name) + '.txt')
         with open(label_file_path, 'a') as file:
             file.write(label_content + '\n')
 
