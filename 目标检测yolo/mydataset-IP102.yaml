@@ -11,7 +11,7 @@
 #val: test.txt # val images (relative to 'path') 4 images
 
 ###### 服务器数据集目录 ######
-path: E:\lsh\dataset\ip102/images
+path: C:\ProgramData\lsh-dataset/ip102/images
 train: train # train images (relative to 'path') 4 images
 val: val # val images (relative to 'path') 4 images
 test: # test images (optional)
