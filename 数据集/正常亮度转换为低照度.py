@@ -7,9 +7,9 @@ import numpy as np
 
 
 # 设置你的源文件夹和目标文件夹
-source_folder = Path('D:\dataset\ip102\Detection\VOC2007\images')  # 替换为你的源文件夹路径
-dest_folder_unaltered = Path('D:\dataset\ip102-low-light/high')  # 替换为未调整图像的目标文件夹路径
-dest_folder_altered = Path('D:\dataset\ip102-low-light/low')  # 替换为调整过图像的目标文件夹路径
+source_folder = Path('D:\dataset/forest-31-pests/train2017')  # 替换为你的源文件夹路径
+dest_folder_unaltered = Path('D:\dataset/forest-31-pests-low-light/trainB')  # 替换为未调整图像的目标文件夹路径
+dest_folder_altered = Path('D:\dataset/forest-31-pests-low-light/trainA')  # 替换为调整过图像的目标文件夹路径
 
 # 创建目标文件夹如果它们不存在
 dest_folder_unaltered.mkdir(parents=True, exist_ok=True)
@@ -36,6 +36,8 @@ table = np.array([((i / 255.0) ** invGamma) * 255 for i in np.arange(0, 256)]).a
 for image_path in image_files[half_size:]:
     # 读取图像
     image = cv2.imread(str(image_path))
+    if image is None:
+        print(f'Error: {image_path} not found or unable to read')
     # alpha < 1 降低对比度，beta < 0 降低亮度
     dark_image = cv2.convertScaleAbs(image, alpha=0.8, beta=-40)
     # gamma校正
