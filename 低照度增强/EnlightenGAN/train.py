@@ -17,7 +17,7 @@ if __name__ == '__main__':
     data_loader = CreateDataLoader(opt)
     dataset = data_loader.load_data()
     dataset_size = len(data_loader)
-    print('#training images = %d' % dataset_size)
+    print('##############training images = %d' % dataset_size)
 
     model = create_model(opt)
     visualizer = Visualizer(opt)

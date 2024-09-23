@@ -9,9 +9,9 @@ opt = parser.parse_args()
 
 if opt.train:
 	os.system("python train.py \
-		--dataroot ./final_dataset \
+		--dataroot D:\dataset\ip102-low-light \
 		--no_dropout \
-		--name enlightening \
+		--name enlightening0923_1 \
 		--model single \
 		--dataset_mode unaligned \
 		--which_model_netG sid_unet_resize \

@@ -62,7 +62,9 @@ class UnalignedDataset(BaseDataset):
 
         # self.A_paths = make_dataset(self.dir_A)
         # self.B_paths = make_dataset(self.dir_B)
+        print('Loading dataset from %s' % self.dir_A)
         self.A_imgs, self.A_paths = store_dataset(self.dir_A)
+        print('Loading dataset from %s' % self.dir_B)
         self.B_imgs, self.B_paths = store_dataset(self.dir_B)
 
         # self.A_paths = sorted(self.A_paths)
