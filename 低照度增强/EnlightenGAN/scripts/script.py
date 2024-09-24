@@ -41,7 +41,7 @@ elif opt.predict:
 	for i in range(1):
 	        os.system("python predict.py \
 	        	--dataroot ./test_dataset \
-	        	--name enlightening \
+	        	--name enlightening0923_1 \
 	        	--model single \
 	        	--which_direction AtoB \
 	        	--no_dropout \
@@ -53,4 +53,4 @@ elif opt.predict:
                 --self_attention \
                 --times_residual \
 	        	--instance_norm 0 --resize_or_crop='no'\
-	        	--which_epoch " + str(200 - i*5))
+	        	--which_epoch latest")
