@@ -38,7 +38,7 @@ def process_annotations(json_file, images_folder, labels_folder):
         h_norm = bbox[3] / height
 
         # 写入标签文件，标签编号减1
-        label = category_id - 1
+        label = category_id
         label_content = f"{label} {x_center} {y_center} {w_norm} {h_norm}"
 
         label_file_path = os.path.join(labels_folder, str(label_file_name) + '.txt')
