@@ -7,9 +7,9 @@ import numpy as np
 
 
 # 设置你的源文件夹和目标文件夹
-source_folder = Path('D:\dataset/forest-31-pests/train2017')  # 替换为你的源文件夹路径
-dest_folder_unaltered = Path('D:\dataset/forest-31-pests-low-light/trainB')  # 替换为未调整图像的目标文件夹路径
-dest_folder_altered = Path('D:\dataset/forest-31-pests-low-light/trainA')  # 替换为调整过图像的目标文件夹路径
+source_folder = Path('D:\dataset\ip102\Detection\VOC2007\images')  # 替换为你的源文件夹路径
+dest_folder_unaltered = Path('D:\dataset/ip102-low-light/trainB')  # 替换为未调整图像的目标文件夹路径
+dest_folder_altered = Path('D:\dataset/ip102-low-light/trainA')  # 替换为调整过图像的目标文件夹路径
 
 # 创建目标文件夹如果它们不存在
 dest_folder_unaltered.mkdir(parents=True, exist_ok=True)
@@ -19,11 +19,12 @@ dest_folder_altered.mkdir(parents=True, exist_ok=True)
 image_files = list(source_folder.glob('*.jpg'))  # 假设图片是jpg格式，根据需要调整
 random.shuffle(image_files)  # 随机打乱图片顺序
 
-# 确定一半的图片数量
-half_size = len(image_files) // 2
+# 确定需要处理的图片数量
+# half_size = len(image_files) // 2
+size = 1000
 
 # 复制未调整的图像
-for image_path in image_files[:half_size]:
+for image_path in image_files[:size]:
     shutil.copy(str(image_path), str(dest_folder_unaltered / image_path.name))
     print("复制",image_path)
 
@@ -33,7 +34,7 @@ invGamma = 1.0 / gamma
 table = np.array([((i / 255.0) ** invGamma) * 255 for i in np.arange(0, 256)]).astype("uint8")
 
 # 调整并复制剩余的图像
-for image_path in image_files[half_size:]:
+for image_path in image_files[len(image_files)-1000:]:
     # 读取图像
     image = cv2.imread(str(image_path))
     if image is None:
