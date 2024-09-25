@@ -29,8 +29,8 @@ parser.add_argument('--save', type=str, default='EXP/', help='location of the da
 
 args = parser.parse_args()
 
-train_low_data_names = 'D:/dataset/SCI-low-light'
-test_low_data_names = './data/medium'
+train_low_data_names = 'D:\dataset\ip102-low-light-1000/fix-version'
+test_low_data_names = 'D:\dataset\pest-low-light-test'
 
 os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
 

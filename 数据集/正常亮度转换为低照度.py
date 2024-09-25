@@ -8,8 +8,8 @@ import numpy as np
 
 # 设置你的源文件夹和目标文件夹
 source_folder = Path('D:\dataset\ip102\Detection\VOC2007\images')  # 替换为你的源文件夹路径
-dest_folder_unaltered = Path('D:\dataset/ip102-low-light/trainB')  # 替换为未调整图像的目标文件夹路径
-dest_folder_altered = Path('D:\dataset/ip102-low-light/trainA')  # 替换为调整过图像的目标文件夹路径
+dest_folder_unaltered = Path('D:\dataset/ip102-low-light-1000/trainB')  # 替换为未调整图像的目标文件夹路径
+dest_folder_altered = Path('D:\dataset/ip102-low-light-1000/trainA')  # 替换为调整过图像的目标文件夹路径
 
 # 创建目标文件夹如果它们不存在
 dest_folder_unaltered.mkdir(parents=True, exist_ok=True)
