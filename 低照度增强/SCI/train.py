@@ -22,14 +22,14 @@ parser.add_argument('--batch_size', type=int, default=1, help='batch size')
 parser.add_argument('--cuda', default=True, type=bool, help='Use CUDA to train model')
 parser.add_argument('--gpu', type=str, default='0', help='gpu device id')
 parser.add_argument('--seed', type=int, default=2, help='random seed')
-parser.add_argument('--epochs', type=int, default=5, help='epochs')
-parser.add_argument('--lr', type=float, default=0.0003, help='learning rate')
+parser.add_argument('--epochs', type=int, default=3, help='epochs')
+parser.add_argument('--lr', type=float, default=0.0005, help='learning rate')
 parser.add_argument('--stage', type=int, default=3, help='epochs')
 parser.add_argument('--save', type=str, default='EXP/', help='location of the data corpus')
 
 args = parser.parse_args()
 
-train_low_data_names = 'D:\dataset\ip102-low-light-1000/fix-version'
+train_low_data_names = 'D:\dataset\ip102-low-light/fix-version'
 test_low_data_names = 'D:\dataset\pest-low-light-test'
 
 os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
