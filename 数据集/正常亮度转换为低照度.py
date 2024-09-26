@@ -4,7 +4,7 @@ import random
 import cv2
 from pathlib import Path
 import numpy as np
-
+from PIL import Image, ImageEnhance
 
 # 设置你的源文件夹和目标文件夹
 source_folder = Path('D:\dataset\ip102\Detection\VOC2007\images')  # 替换为你的源文件夹路径
@@ -21,30 +21,47 @@ random.shuffle(image_files)  # 随机打乱图片顺序
 
 # 确定需要处理的图片数量
 # half_size = len(image_files) // 2
-size = 1000
+size = 100
 
 # 复制未调整的图像
 for image_path in image_files[:size]:
     shutil.copy(str(image_path), str(dest_folder_unaltered / image_path.name))
     print("复制",image_path)
 
+# 设置亮度和对比度的降低因子，小于1的值会降低亮度和对比度
+brightness_factor = 0.25  # 亮度降低为原来的 %
+contrast_factor = 0.4    # 对比度降低为原来的 %
 
-gamma = 0.7  # 伽马值小于1会使图像变暗
+gamma = 0.9  # 伽马值小于1会使图像变暗
 invGamma = 1.0 / gamma
 table = np.array([((i / 255.0) ** invGamma) * 255 for i in np.arange(0, 256)]).astype("uint8")
 
 # 调整并复制剩余的图像
-for image_path in image_files[len(image_files)-1000:]:
-    # 读取图像
-    image = cv2.imread(str(image_path))
-    if image is None:
-        print(f'Error: {image_path} not found or unable to read')
-    # alpha < 1 降低对比度，beta < 0 降低亮度
-    dark_image = cv2.convertScaleAbs(image, alpha=0.8, beta=-40)
-    # gamma校正
-    dark_gamma_image = cv2.LUT(dark_image, table)
-    # 保存调整后的图像
-    cv2.imwrite(str(dest_folder_altered / image_path.name), dark_gamma_image)
+for image_path in image_files[len(image_files)-size:]:
+    # # 读取图像
+    # image = cv2.imread(str(image_path))
+    # if image is None:
+    #     print(f'Error: {image_path} not found or unable to read')
+    # # alpha < 1 降低对比度，beta < 0 降低亮度
+    # dark_image = cv2.convertScaleAbs(image, alpha=0.6, beta=-40)
+    # # gamma校正
+    # #dark_gamma_image = cv2.LUT(dark_image, table)
+    # # 保存调整后的图像
+    # cv2.imwrite(str(dest_folder_altered / image_path.name), dark_image)
+
+    # 打开图片
+    image = Image.open(str(image_path))
+
+    # 调整亮度
+    enhancer = ImageEnhance.Brightness(image)
+    image = enhancer.enhance(brightness_factor)
+
+    # 调整对比度
+    enhancer = ImageEnhance.Contrast(image)
+    image = enhancer.enhance(contrast_factor)
+
+    # 保存图片
+    image.save(str(dest_folder_altered / image_path.name))
     print("调整并复制",image_path)
 
 print("图像处理完成。未调整的图像已复制到：", dest_folder_unaltered)
