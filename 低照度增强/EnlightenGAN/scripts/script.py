@@ -41,7 +41,7 @@ elif opt.predict:
 	for i in range(1):
 	        os.system("python predict.py \
 	        	--dataroot ./test_dataset \
-	        	--name enlightening0923_1 \
+	        	--name enlightening \
 	        	--model single \
 	        	--which_direction AtoB \
 	        	--no_dropout \

@@ -30,7 +30,7 @@ for image_path in image_files[:size]:
 
 # 设置亮度和对比度的降低因子，小于1的值会降低亮度和对比度
 brightness_factor = 0.25  # 亮度降低为原来的 %
-contrast_factor = 0.4    # 对比度降低为原来的 %
+contrast_factor = 0.6    # 对比度降低为原来的 %
 
 gamma = 0.9  # 伽马值小于1会使图像变暗
 invGamma = 1.0 / gamma
