@@ -17,12 +17,8 @@ class MemoryFriendlyLoader(torch.utils.data.Dataset):
         self.task = task
         self.train_low_data_names = []
 
-        i = 0
         for root, dirs, names in os.walk(self.low_img_dir):
             for name in names:
-                i += 1
-                if i == 200:
-                    break
                 # 如果图片面积大于某一值，则不加载
                 img = Image.open(os.path.join(root, name))
                 if img.size[0] * img.size[1] < 900000:

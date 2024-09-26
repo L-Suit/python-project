@@ -35,7 +35,7 @@ def lowlight(image_path):
 	end_time = (time.time() - start)
 	print(end_time)
 	# image_path = image_path + 'Zero-DCE_results/'
-	result_path = 'D:/dataset/pest-low-light-Zero-DCE_results/'
+	result_path = 'D:\dataset\Zero-DCE_results/'
 	if not os.path.exists(image_path.replace('/'+image_path.split("/")[-1],'')):
 		os.makedirs(image_path.replace('/'+image_path.split("/")[-1],''))
 
@@ -45,7 +45,7 @@ def lowlight(image_path):
 if __name__ == '__main__':
 # test_images
 	with torch.no_grad():
-		filePath = 'D:/dataset/pest-low-light/'
+		filePath = 'D:\dataset\pest-low-light-test/'
 	
 		file_list = os.listdir(filePath)
 
