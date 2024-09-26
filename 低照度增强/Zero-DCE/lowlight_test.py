@@ -28,7 +28,7 @@ def lowlight(image_path):
 	data_lowlight = data_lowlight.cuda().unsqueeze(0)
 
 	DCE_net = model.enhance_net_nopool().cuda()
-	DCE_net.load_state_dict(torch.load('pretrained_model/Epoch99.pth'))
+	DCE_net.load_state_dict(torch.load('pretrained_model/Epoch19.pth'))
 	start = time.time()
 	_,enhanced_image,_ = DCE_net(data_lowlight)
 

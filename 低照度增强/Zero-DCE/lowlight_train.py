@@ -87,18 +87,18 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 
 	# Input Parameters
-	parser.add_argument('--lowlight_images_path', type=str, default="D:/dataset/low-light/")
+	parser.add_argument('--lowlight_images_path', type=str, default="D:\dataset\ip102-low-light/fix-version/")
 	parser.add_argument('--lr', type=float, default=0.0001)
 	parser.add_argument('--weight_decay', type=float, default=0.0001)
 	parser.add_argument('--grad_clip_norm', type=float, default=0.1)
-	parser.add_argument('--num_epochs', type=int, default=10)
+	parser.add_argument('--num_epochs', type=int, default=20)
 	parser.add_argument('--train_batch_size', type=int, default=8)
 	parser.add_argument('--val_batch_size', type=int, default=8)
 	parser.add_argument('--num_workers', type=int, default=2)
 	parser.add_argument('--display_iter', type=int, default=10)
-	parser.add_argument('--snapshot_per_epoch', type=int, default=2)
+	parser.add_argument('--snapshot_per_epoch', type=int, default=5)
 	# 当前的时间和日期为文件夹名
-	parser.add_argument('--snapshots_folder', type=str, default="snapshots/"+time.strftime("%Y-%m-%d_%H-%M/", time.localtime()))
+	parser.add_argument('--snapshots _folder', type=str, default="snapshots/"+'ip102-low-'+time.strftime("%Y-%m-%d_%H-%M/", time.localtime()))
 	parser.add_argument('--load_pretrain', type=bool, default=True)
 	parser.add_argument('--pretrain_dir', type=str, default="pretrained_model/Epoch99.pth")
 
