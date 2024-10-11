@@ -21,7 +21,7 @@ random.shuffle(image_files)  # 随机打乱图片顺序
 
 # 确定需要处理的图片数量
 # half_size = len(image_files) // 2
-size = 100
+size = 1000
 
 # 复制未调整的图像
 for image_path in image_files[:size]:
@@ -29,8 +29,11 @@ for image_path in image_files[:size]:
     print("复制",image_path)
 
 # 设置亮度和对比度的降低因子，小于1的值会降低亮度和对比度
-brightness_factor = 0.25  # 亮度降低为原来的 %
-contrast_factor = 0.6    # 对比度降低为原来的 %
+# 生成随机数，要求随机数在0到2之间
+
+brightness_factor = 0.25
+brightness_change_factor = 0.1 # 亮度降低为原来的25%，再上下浮动±0.1
+contrast_factor = 0.7    # 对比度降低为原来的 %
 
 gamma = 0.9  # 伽马值小于1会使图像变暗
 invGamma = 1.0 / gamma
@@ -54,7 +57,8 @@ for image_path in image_files[len(image_files)-size:]:
 
     # 调整亮度
     enhancer = ImageEnhance.Brightness(image)
-    image = enhancer.enhance(brightness_factor)
+    final_brightness_factor = random.uniform(brightness_factor-brightness_change_factor, brightness_factor+brightness_change_factor)
+    image = enhancer.enhance(final_brightness_factor)
 
     # 调整对比度
     enhancer = ImageEnhance.Contrast(image)

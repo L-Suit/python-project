@@ -42,6 +42,7 @@ def store_dataset(dir):
         for fname in fnames:
             if is_image_file(fname):
                 path = os.path.join(root, fname)
+                print(path)
                 img = Image.open(path).convert('RGB')
                 images.append(img)
                 all_path.append(path)
