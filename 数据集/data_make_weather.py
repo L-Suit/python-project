@@ -131,7 +131,7 @@ def alpha_rain(rain, img, beta=0.8):
     return rain_result
 
 def main():
-    original_images_folder = r'D:\dataset\forest-31-pests\val2017'  # 原始图片所在的文件夹
+    original_images_folder = r'D:\dataset\ip102\Detection\VOC2007\images'  # 原始图片所在的文件夹
     new_dataset_folder = r'D:\dataset\ip102_weather'  # 新的数据集存放位置
     allocation_record = './ip102_process_record.csv'  # 分配记录文件路径
 

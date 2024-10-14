@@ -69,7 +69,7 @@ class SpatialAttention(nn.Module):
     def forward(self, x):  # x:[b,c,h,w]
         x_avg = torch.mean(x, dim=1, keepdim=True)  # (b,1,h,w)
         x_max, _ = torch.max(x, dim=1, keepdim=True)  # (b,1,h,w)
-        x2 = torch.concat([x_avg, x_max], dim=1)  # (b,2,h,w)
+        x2 = torch.cat([x_avg, x_max], dim=1)  # (b,2,h,w)
         sattn = self.sa(x2)  # 7x7conv (b,1,h,w)
         return sattn * x
 
@@ -362,7 +362,8 @@ class CPA_arch(nn.Module):
         self.up1 = Upsample(dim * 2)
 
     def forward(self, x):  # (b,c_in,h,w)
-
+        # 将x转换为半精度
+        # x = x.half()
         prompt_params = self.myPromptParamGen(self.prompt_param_ini)
         prompt_param1 = prompt_params[2]  # [1, 64, 64, 64]
         prompt_param2 = prompt_params[1]  # [1, 128, 32, 32]
@@ -396,6 +397,8 @@ if __name__ == "__main__":
     # Generating Sample image
     image_size = (1, 3, 640, 640)
     image = torch.rand(*image_size)
+    print(image.dtype)
     out = CPA_arch(3, 3, 4)
     out = out(image)
     print(out.size())
+    print(f'out.dtype:,{out.dtype}')

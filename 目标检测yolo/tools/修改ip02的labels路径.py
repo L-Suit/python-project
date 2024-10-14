@@ -1,8 +1,8 @@
 # 实际使用的脚本
 import os
 
-original_file = r"D:\dataset\ip102\Detection\VOC2007\test.txt"  # 原始文件名
-new_file = r"D:\dataset\ip102_weather\test.txt"      # 修改后的文件名
+original_file = r"D:\dataset\ip102\Detection\VOC2007\trainval.txt"  # 原始文件名
+new_file = r"D:\dataset\ip102_weather\trainval.txt"      # 修改后的文件名
 
 # 原来路径
 original_prefix = 'D:/dataset/ip102/Detection/VOC2007/images/'

@@ -17,19 +17,20 @@ from ultralytics.utils import DEFAULT_CFG
 if __name__ == '__main__':
     model = YOLO('ultralytics/cfg/models/v8/yolov8-weather.yaml')
     # model.load('yolov8n.pt') # loading pretrain weights
-    model.train(data=r'mydataset-IP102.yaml',
+    model.train(data=r'mydataset-forest-31pest.yaml',
                 # 如果大家任务是其它的'ultralytics/cfg/default.yaml'找到这里修改task可以改成detect, segment, classify, pose
-                cache=False,
+                cache=True,
                 imgsz=640,
-                epochs=20,
+                epochs=10,
                 single_cls=False,  # 是否是单类别检测
-                batch=8,
+                batch=4,
                 close_mosaic=10,
                 workers=0,
                 device='0',
                 optimizer='SGD', # using SGD
                 # resume='', # 如过想续训就设置last.pt的地址
-                amp=False,  # 如果出现训练损失为Nan可以关闭amp
-                project='runs/train',
-                name='exp',
+                amp=True,  # 如果出现训练损失为Nan可以关闭amp
+                # half=True,
+                project='runs/detect',
+                name='yolov8n_weather_31for_test',
                 )
