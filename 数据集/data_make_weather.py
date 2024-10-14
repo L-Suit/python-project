@@ -9,7 +9,7 @@ import numpy as np
 from PIL import Image
 
 # 设置随机种子，以保证每次运行得到相同的随机序列
-random.seed(42)  # 使用固定的随机种子
+# random.seed(42)  # 使用固定的随机种子
 
 
 # 定义图片处理函数
@@ -20,7 +20,7 @@ def process_image(image_path, output_folder, process_type):
     if process_type == 'origin':                    # 保持原始图片
         img_processed = image
     elif process_type == 'rain':                    # 雨天效果
-        value = random.randint(300, 600)
+        # value = random.randint(300, 600)
         noise = get_noise(image, value=500)
         rain = rain_blur(noise, length=50, angle=-30, w=3)
         rain_result = alpha_rain(rain, image, beta=0.6)
@@ -44,6 +44,9 @@ def process_image(image_path, output_folder, process_type):
         img_processed = np.clip(foggy_image * 255, 0, 255)
         img_processed = img_processed.astype(np.uint8)
     elif process_type == 'dark':                      # 低光效果
+        # 降低亮度
+        dark_factor = random.uniform(0.7, 0.8)
+        image = cv2.convertScaleAbs(image, alpha=dark_factor, beta=0)
         img_processed = image / 255  # 归一化
         r=random.uniform(1.5,5)
         dark_image=Dark_loop(img_processed,r)
@@ -82,6 +85,7 @@ def AddHaz_loop(img_f, center, size, beta, A):
 # 针对高分辨率图片调整参数
 def AddHaz_loop_largeimg(img_f, center, size, beta, A):
     beta = 0.01 * random.randint(0, 4) + 0.04
+    print('fog beta=', beta)
     (row, col, chs) = img_f.shape  # (H,W,C)
     for j in range(row):
         for l in range(col):
@@ -131,9 +135,9 @@ def alpha_rain(rain, img, beta=0.8):
     return rain_result
 
 def main():
-    original_images_folder = r'D:\dataset\ip102\Detection\VOC2007\images'  # 原始图片所在的文件夹
-    new_dataset_folder = r'D:\dataset\ip102_weather'  # 新的数据集存放位置
-    allocation_record = './ip102_process_record.csv'  # 分配记录文件路径
+    original_images_folder = r'D:\dataset\forest-31-pests\yolo\images\val'  # 原始图片所在的文件夹
+    new_dataset_folder = r'D:\dataset\forest_31pests_weather/images'  # 新的数据集存放位置
+    allocation_record = './forest31_process_record.csv'  # 分配记录文件路径
 
     # 获取所有图片文件的路径
     image_paths = [os.path.join(original_images_folder, f) for f in os.listdir(original_images_folder) if
