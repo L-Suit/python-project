@@ -15,6 +15,10 @@ from PIL import Image
 # 定义图片处理函数
 def process_image(image_path, output_folder, process_type):
     image = cv2.imread(image_path)
+    # 如果输出目录中已经有该图片，则跳过处理
+    if os.path.exists(os.path.join(output_folder, os.path.basename(image_path))):
+        print(f"Skip {os.path.join(output_folder, os.path.basename(image_path))}")
+        return
 
     # 根据process_type定义不同的处理方式
     if process_type == 'origin':                    # 保持原始图片
@@ -135,7 +139,7 @@ def alpha_rain(rain, img, beta=0.8):
     return rain_result
 
 def main():
-    original_images_folder = r'D:\dataset\forest-31-pests\yolo\images\val'  # 原始图片所在的文件夹
+    original_images_folder = r'D:\dataset\forest-31-pests\yolo\images\train'  # 原始图片所在的文件夹
     new_dataset_folder = r'D:\dataset\forest_31pests_weather/images'  # 新的数据集存放位置
     allocation_record = './forest31_process_record.csv'  # 分配记录文件路径
 
