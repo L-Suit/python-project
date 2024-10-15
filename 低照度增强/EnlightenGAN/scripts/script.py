@@ -9,9 +9,9 @@ opt = parser.parse_args()
 
 if opt.train:
 	os.system("python train.py \
-		--dataroot ./final_dataset \
+		--dataroot D:/dataset/EnlightenGAN-final_dataset \
 		--no_dropout \
-		--name enlightening \
+		--name enlightening0927_EnGAN-finaldata \
 		--model single \
 		--dataset_mode unaligned \
 		--which_model_netG sid_unet_resize \
@@ -24,7 +24,7 @@ if opt.train:
 		--fineSize 320 \
         --patchSize 32 \
 		--skip 1 \
-		--batchSize 8 \
+		--batchSize 4 \
         --self_attention \
 		--use_norm 1 \
 		--use_wgan 0 \
@@ -53,4 +53,4 @@ elif opt.predict:
                 --self_attention \
                 --times_residual \
 	        	--instance_norm 0 --resize_or_crop='no'\
-	        	--which_epoch " + str(200 - i*5))
+	        	--which_epoch latest")

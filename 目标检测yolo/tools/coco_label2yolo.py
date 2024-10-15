@@ -38,7 +38,7 @@ def process_annotations(json_file, images_folder, labels_folder):
         h_norm = bbox[3] / height
 
         # 写入标签文件，标签编号减1
-        label = category_id - 1
+        label = category_id
         label_content = f"{label} {x_center} {y_center} {w_norm} {h_norm}"
 
         label_file_path = os.path.join(labels_folder, str(label_file_name) + '.txt')
@@ -47,7 +47,7 @@ def process_annotations(json_file, images_folder, labels_folder):
 
 def create_labels_folder():
     # 创建labels文件夹及其子文件夹
-    labels_folder = 'D:\dataset\林业害虫31类/yolo/labels'
+    labels_folder = 'D:\dataset/forest-31-pests/yolo/labels'
     train_labels_folder = os.path.join(labels_folder, 'train')
     val_labels_folder = os.path.join(labels_folder, 'val')
     os.makedirs(train_labels_folder, exist_ok=True)
@@ -58,10 +58,10 @@ def main():
     train_labels_folder, val_labels_folder = create_labels_folder()
 
     # 处理训练和验证数据
-    process_annotations('D:\dataset\林业害虫31类/annotations/instances_train2017.json',
-                        'D:\dataset\林业害虫31类/train2017', train_labels_folder)
-    process_annotations('D:\dataset\林业害虫31类/annotations/instances_val2017.json',
-                        'D:\dataset\林业害虫31类/val2017', val_labels_folder)
+    process_annotations('D:\dataset/forest-31-pests/annotations/instances_train2017.json',
+                        'D:\dataset/forest-31-pests/train2017', train_labels_folder)
+    process_annotations('D:\dataset/forest-31-pests/annotations/instances_val2017.json',
+                        'D:\dataset/forest-31-pests/val2017', val_labels_folder)
 
     print("完成处理。")
 

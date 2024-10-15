@@ -28,14 +28,14 @@ def lowlight(image_path):
 	data_lowlight = data_lowlight.cuda().unsqueeze(0)
 
 	DCE_net = model.enhance_net_nopool().cuda()
-	DCE_net.load_state_dict(torch.load('pretrained_model/Epoch99.pth'))
+	DCE_net.load_state_dict(torch.load('pretrained_model/Epoch19.pth'))
 	start = time.time()
 	_,enhanced_image,_ = DCE_net(data_lowlight)
 
 	end_time = (time.time() - start)
 	print(end_time)
 	# image_path = image_path + 'Zero-DCE_results/'
-	result_path = 'D:/dataset/pest-low-light-Zero-DCE_results/'
+	result_path = 'D:\dataset\Zero-DCE_results/'
 	if not os.path.exists(image_path.replace('/'+image_path.split("/")[-1],'')):
 		os.makedirs(image_path.replace('/'+image_path.split("/")[-1],''))
 
@@ -45,7 +45,7 @@ def lowlight(image_path):
 if __name__ == '__main__':
 # test_images
 	with torch.no_grad():
-		filePath = 'D:/dataset/pest-low-light/'
+		filePath = 'D:\dataset\pest-low-light-test/'
 	
 		file_list = os.listdir(filePath)
 

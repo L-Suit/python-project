@@ -4,7 +4,9 @@
 cam_result/
 低照度增强/SCI/results/
 低照度增强/Zero-DCE/snapshots/
+低照度增强/Zero-DCE/pretrained_model/*.pth
 目标检测/results/
+数据集/*.csv
 
 
 # 配置文件

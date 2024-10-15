@@ -12,10 +12,10 @@ from model import Finetunemodel
 from multi_read_data import MemoryFriendlyLoader
 
 parser = argparse.ArgumentParser("SCI")
-parser.add_argument('--data_path', type=str, default='D:/dataset/pest-low-light',
+parser.add_argument('--data_path', type=str, default='D:/dataset/pest-low-light-test',
                     help='location of the data corpus')
 parser.add_argument('--save_path', type=str, default='./results/pest-low-light', help='location of the data corpus')
-parser.add_argument('--model', type=str, default='./weights/easy.pt', help='location of the data corpus')
+parser.add_argument('--model', type=str, default='./weights/weights_1.pt', help='location of the data corpus')
 parser.add_argument('--gpu', type=int, default=0, help='gpu device id')
 parser.add_argument('--seed', type=int, default=2, help='random seed')
 
@@ -48,7 +48,9 @@ def main():
     model.eval()
     with torch.no_grad():
         for _, (input, image_name) in enumerate(test_queue):
-            input = Variable(input, volatile=True).cuda()
+            # input = Variable(input, volatile=True).cuda()
+            with torch.no_grad():
+                input = input.cuda()
             image_name = image_name[0].split('\\')[-1].split('.')[0]
             i, r = model(input)
             u_name = '%s.png' % (image_name)
