@@ -1,13 +1,13 @@
 # 实际使用的脚本
 import os
 
-original_file = r"D:\dataset\ip102\Detection\VOC2007\trainval.txt"  # 原始文件名
-new_file = r"D:\dataset\ip102_weather\trainval.txt"      # 修改后的文件名
+original_file = r"C:\ProgramData\lsh-dataset\ip102_weather\test.txt"  # 原始文件名
+new_file = r"C:\ProgramData\lsh-dataset\ip102_weather\test.txt"      # 修改后的文件名
 
 # 原来路径
 original_prefix = 'D:/dataset/ip102/Detection/VOC2007/images/'
 # 要替换的新路径前缀
-new_prefix = 'D:/dataset/ip102_weather/images/'
+new_prefix = 'C:\ProgramData\lsh-dataset\ip102_weather\images/'
 
 with open(original_file, 'r') as file:
     # 读取所有行
