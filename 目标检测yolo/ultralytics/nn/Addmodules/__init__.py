@@ -1,2 +1,2 @@
 from .CPAEnhancer import *
-from  FasterBlock import *
+from .FasterBlock import *
