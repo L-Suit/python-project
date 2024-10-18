@@ -15,7 +15,7 @@ from ultralytics.utils import DEFAULT_CFG
 
 
 if __name__ == '__main__':
-    model = YOLO('ultralytics/cfg/models/v8/yolov8-weather.yaml')
+    model = YOLO('ultralytics/cfg/models/v8/yolov8-weather-CPA.yaml')
     # model.load('yolov8n.pt') # loading pretrain weights
     model.train(data=r'mydataset-forest-31pest.yaml',
                 # 如果大家任务是其它的'ultralytics/cfg/default.yaml'找到这里修改task可以改成detect, segment, classify, pose
