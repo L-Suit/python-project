@@ -17,9 +17,10 @@ from ultralytics.utils import DEFAULT_CFG
 if __name__ == '__main__':
     model = YOLO(r'./cfg/models/v8/yolov8-weather.yaml')
     # model.load('yolov8n.pt') # loading pretrain weights
-    epoch = 60
-    batch = 8
+    epoch = 20
+    batch = 4
     optimizer = 'AdamW'
+    lr0 = 0.001
 
 
 
@@ -34,6 +35,7 @@ if __name__ == '__main__':
                 workers=0,
                 device='0',
                 optimizer=optimizer, # 优化器设置
+                lr0=lr0,
                 # resume=True, # 如过想续训,此处设置true，model不用.yaml改为last.pt的位置
                 amp=True,  # 如果出现训练损失为Nan可以关闭amp
                 # half=True,
