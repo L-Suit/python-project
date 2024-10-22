@@ -15,12 +15,13 @@ from ultralytics.utils import DEFAULT_CFG
 
 
 if __name__ == '__main__':
-    model = YOLO(r'./cfg/models/v8/yolov8.yaml')
+    model = YOLO(r'./cfg/models/v8/yolov8-weather-GDIP.yaml')
     # model.load('yolov8n.pt') # loading pretrain weights
     epoch = 100
     batch = 8
     optimizer = 'AdamW'
     lr0 = 0.001
+    momentum = 0.8
 
 
 
@@ -36,9 +37,10 @@ if __name__ == '__main__':
                 device='0',
                 optimizer=optimizer, # 优化器设置
                 lr0=lr0,
+                momentum=momentum,
                 # resume=True, # 如过想续训,此处设置true，model不用.yaml改为last.pt的位置
                 amp=True,  # 如果出现训练损失为Nan可以关闭amp
                 # half=True,
                 project='runs/detect',
-                name=f'yolov8n_for31weather_epo{epoch}_{optimizer}',
+                name=f'yolov8n_GDIP_for31weather_epo{epoch}_{optimizer}',
                 )
