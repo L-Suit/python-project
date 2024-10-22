@@ -139,8 +139,8 @@ def alpha_rain(rain, img, beta=0.8):
     return rain_result
 
 def main():
-    original_images_folder = r'D:\dataset\forest-31-pests\yolo\images\train'  # 原始图片所在的文件夹
-    new_dataset_folder = r'D:\dataset\forest_31pests_weather/images'  # 新的数据集存放位置
+    original_images_folder = r'C:\ProgramData\lsh-dataset\forest-31-pests\yolo\images\train'  # 原始图片所在的文件夹
+    new_dataset_folder = r'C:\ProgramData\lsh-dataset\forest-31pests-weather\images\train'  # 新的数据集存放位置
     allocation_record = './forest31_process_record.csv'  # 分配记录文件路径
 
     # 获取所有图片文件的路径

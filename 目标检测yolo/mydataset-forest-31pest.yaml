@@ -6,15 +6,15 @@
 
 # Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
 ###### 主机数据集目录 #######
-path: D:\dataset\forest_31pests_weather\images # dataset root dir
-train: train # train images (relative to 'path') 4 images
-val: val # val images (relative to 'path') 4 images
-
-###### 服务器数据集目录 ######
-#path: C:/ProgramData/lsh-dataset/forest-31-pests/yolo/images
+#path: D:\dataset\forest_31pests_weather\images # dataset root dir
 #train: train # train images (relative to 'path') 4 images
 #val: val # val images (relative to 'path') 4 images
-#test: # test images (optional)
+
+###### 服务器数据集目录 ######
+path: C:\ProgramData\lsh-dataset\forest-31pests-weather/images
+train: train # train images (relative to 'path') 4 images
+val: val # val images (relative to 'path') 4 images
+test: # test images (optional)
 
 # Classes
 names:

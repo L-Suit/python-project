@@ -15,7 +15,7 @@ from ultralytics.utils import DEFAULT_CFG
 
 
 if __name__ == '__main__':
-    model = YOLO(r'./cfg/models/v8/yolov8.yaml')
+    model = YOLO(r'./cfg/models/v8/yolov8-weather-GDIP.yaml')
     # model.load('yolov8n.pt') # loading pretrain weights
     epoch = 100
     batch = 8
