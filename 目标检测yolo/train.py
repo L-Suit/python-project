@@ -18,7 +18,7 @@ if __name__ == '__main__':
     model = YOLO(r'./cfg/models/v8/yolov8-weather-SCConv.yaml')
     # model.load('yolov8n.pt') # loading pretrain weights
     epoch = 100
-    batch = 8
+    batch = 16
     optimizer = 'AdamW'
     lr0 = 0.001
 
@@ -27,7 +27,7 @@ if __name__ == '__main__':
     model.train(data=r'mydataset-forest-31pest.yaml',
                 # 如果大家任务是其它的'ultralytics/cfg/default.yaml'找到这里修改task可以改成detect, segment, classify, pose
                 cache=True,
-                imgsz=640,
+                imgsz=480,
                 epochs=epoch,
                 single_cls=False,  # 是否是单类别检测
                 batch=batch,

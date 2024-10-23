@@ -6,7 +6,7 @@ author : shubham.aiengineer@gmail.com
 
 import torch
 from torch import nn
-from torchsummary import summary
+
 
 __all__ = ['MobileNetV3']
 
