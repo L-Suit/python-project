@@ -1,4 +1,6 @@
 from ultralytics import YOLO
+
+
 from ultralytics.models.yolo.detect import DetectionTrainer
 from ultralytics.utils import DEFAULT_CFG
 
@@ -17,11 +19,11 @@ from ultralytics.utils import DEFAULT_CFG
 if __name__ == '__main__':
     model = YOLO(r'./cfg/models/v8/yolov8.yaml')
     # model.load('yolov8n.pt') # loading pretrain weights
-    imgsz = 640
+    imgsz = 480
     epoch = 200
     batch = 16
-    optimizer = 'AdamW'
-    lr0 = 0.001
+    optimizer = 'SGD'
+    lr0 = 0.01
     patience = 15
 
 
@@ -35,7 +37,7 @@ if __name__ == '__main__':
                 single_cls=False,  # 是否是单类别检测
                 batch=batch,
                 close_mosaic=10,
-                workers=6,
+                workers=0,
                 device='0',
                 optimizer=optimizer, # 优化器设置
                 lr0=lr0,
@@ -43,5 +45,5 @@ if __name__ == '__main__':
                 amp=True,  # 如果出现训练损失为Nan可以关闭amp
                 # half=True,
                 project='runs/detect',
-                name=f'yolov8n_ip102_epo{epoch}_{optimizer}_{batch}_{lr0}_{imgsz}',
+                name=f'yolov8n_ip102weather_epo{epoch}_{optimizer}_{batch}',
                 )

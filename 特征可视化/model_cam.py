@@ -202,14 +202,14 @@ class yolov8_heatmap:
             for img_path_ in os.listdir(img_path):
                 self.process(f'{img_path}/{img_path_}', f'{save_path}/{img_path_}')
         else:
-            self.process(img_path, f'{save_path}/result.png')
+            self.process(img_path, f'{save_path}/result1.png')
 
 def get_params():
     params = {
-        'weight': 'D:\Pycharm-project\pythonProject\目标检测yolo\yolov8n.pt', # 现在只需要指定权重即可,不需要指定cfg
+        'weight': '../目标检测yolo/yolov8n.pt', # 现在只需要指定权重即可,不需要指定cfg
         'device': 'cuda:0',
         'method': 'GradCAM', # GradCAMPlusPlus, GradCAM, XGradCAM, EigenCAM, HiResCAM, LayerCAM, RandomCAM, EigenGradCAM
-        'layer':  [9],  # 'model.model[8]', 后续不断测试
+        'layer':  [8],  # 'model.model[8]', 后续不断测试
         'backward_type': 'class', # class, box, all
         'conf_threshold': 0.2, # 0.2
         'ratio': 0.02, # 0.02-0.1
@@ -220,4 +220,4 @@ def get_params():
 
 if __name__ == '__main__':
     model = yolov8_heatmap(**get_params())
-    model(r'D:\dataset\ip102\Detection\VOC2007\images\IP000000008.jpg', 'cam_result')
+    model(r'D:\dataset\forest_31pests_weather\images\train\2(2).jpg', 'cam_result')
