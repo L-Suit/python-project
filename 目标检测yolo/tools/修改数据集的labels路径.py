@@ -1,13 +1,14 @@
 # 实际使用的脚本
 import os
 
-original_file = r"C:\ProgramData\lsh-dataset\ip102_weather\test.txt"  # 原始文件名
-new_file = r"C:\ProgramData\lsh-dataset\ip102_weather\test.txt"      # 修改后的文件名
+original_file = r"/root/autodl-tmp/ip102/test.txt"  # 原始文件名
+new_file = r"/root/autodl-tmp/ip102/test.txt"      # 修改后的文件名
 
 # 原来路径
-original_prefix = 'D:/dataset/ip102/Detection/VOC2007/images/'
+original_prefix = '/root/autodl-tmp/ip102\images/'
 # 要替换的新路径前缀
-new_prefix = 'C:\ProgramData\lsh-dataset\ip102_weather\images/'
+new_prefix = '/root/autodl-tmp/ip102/images/'
+
 
 with open(original_file, 'r') as file:
     # 读取所有行
@@ -24,6 +25,8 @@ modified_lines = [
 # 写入新文件
 with open(new_file, 'w') as file:
     file.writelines(modified_lines)
+
+print("文件路径修改完成")
 
 # 如果希望覆盖原文件，可以使用如下代码
 # with open(original_file, 'w') as file:

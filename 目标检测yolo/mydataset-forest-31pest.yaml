@@ -16,6 +16,12 @@ val: val # val images (relative to 'path') 4 images
 #val: val # val images (relative to 'path') 4 images
 #test: # test images (optional)
 
+###### Autodl平台数据集目录 ######
+#path: /root/autodl-tmp/forest-31-pests/yolo/images
+#train: train # train images (relative to 'path') 4 images
+#val: val # val images (relative to 'path') 4 images
+
+
 # Classes
 names:
   0: Drosicha_contrahens_female
