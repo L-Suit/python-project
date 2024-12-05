@@ -245,7 +245,7 @@ fold_lbl_distrb.to_csv(save_path / "kfold_label_distribution.csv")
 1. First, load the YOLO model.
 
     ```python
-    from ultralytics8 import YOLO
+    from ultralytics import YOLO
 
     weights_path = "path/to/weights.pt"
     model = YOLO(weights_path, task="detect")

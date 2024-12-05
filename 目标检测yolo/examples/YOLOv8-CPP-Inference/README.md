@@ -5,12 +5,12 @@ This example demonstrates how to perform inference using YOLOv8 and YOLOv5 model
 ## Usage
 
 ```bash
-git clone ultralytics11
-cd ultralytics11
+git clone ultralytics
+cd ultralytics
 pip install .
 cd examples/YOLOv8-CPP-Inference
 
-# Add a **yolov8\_.onnx** and/or **yolov5\_.onnx** model(s) to the ultralytics11 folder.
+# Add a **yolov8\_.onnx** and/or **yolov5\_.onnx** model(s) to the ultralytics folder.
 # Edit the **main.cpp** to change the **projectBasePath** to match your user.
 
 # Note that by default the CMake file will try to import the CUDA library to be used with the OpenCVs dnn (cuDNN) GPU Inference.

@@ -1,6 +1,6 @@
 # Ultralytics YOLO 🚀, AGPL-3.0 license
 
-from ultralytics8.utils import ASSETS, ROOT, WEIGHTS_DIR, checks, is_dir_writeable
+from ultralytics.utils import ASSETS, ROOT, WEIGHTS_DIR, checks, is_dir_writeable
 
 # Constants used in tests
 MODEL = WEIGHTS_DIR / "path with spaces" / "yolov8n.pt"  # test spaces in path

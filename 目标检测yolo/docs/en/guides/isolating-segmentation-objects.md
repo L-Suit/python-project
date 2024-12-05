@@ -18,17 +18,17 @@ After performing the [Segment Task](../tasks/segment.md), it's sometimes desirab
 
     ***
 
-2. Load a model and run `predict()` method on a source.
+2.  Load a model and run `predict()` method on a source.
 
-   ```python
-   from ultralytics8 import YOLO
+    ```python
+    from ultralytics import YOLO
 
-   # Load a model
-   model = YOLO("yolov8n-seg.pt")
+    # Load a model
+    model = YOLO("yolov8n-seg.pt")
 
-   # Run inference
-   results = model.predict()
-   ```
+    # Run inference
+    results = model.predict()
+    ```
 
     !!! question "No Prediction Arguments?"
 

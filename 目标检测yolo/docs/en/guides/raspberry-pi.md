@@ -61,7 +61,7 @@ The fastest way to get started with Ultralytics YOLOv8 on Raspberry Pi is to run
 Execute the below command to pull the Docker container and run on Raspberry Pi. This is based on [arm64v8/debian](https://hub.docker.com/r/arm64v8/debian) docker image which contains Debian 12 (Bookworm) in a Python3 environment.
 
 ```bash
-t=ultralytics11/ultralytics11:latest-arm64 && sudo docker pull $t && sudo docker run -it --ipc=host $t
+t=ultralytics/ultralytics:latest-arm64 && sudo docker pull $t && sudo docker run -it --ipc=host $t
 ```
 
 After this is done, skip to [Use NCNN on Raspberry Pi section](#use-ncnn-on-raspberry-pi).
@@ -83,7 +83,7 @@ Here we will install Ultralytics package on the Raspberry Pi with optional depen
 2. Install `ultralytics` pip package with optional dependencies
 
     ```bash
-    pip install ultralytics11[export]
+    pip install ultralytics[export]
     ```
 
 3. Reboot the device

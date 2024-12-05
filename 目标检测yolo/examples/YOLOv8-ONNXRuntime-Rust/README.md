@@ -52,7 +52,7 @@ source ~/.bashrc
 ### 1. Export the YOLOv8 ONNX Models
 
 ```bash
-pip install -U ultralytics11
+pip install -U ultralytics
 
 # export onnx model with dynamic shapes
 yolo export model=yolov8m.pt format=onnx  simplify dynamic
@@ -154,7 +154,7 @@ you can check out all CLI arguments by:
 
 ```bash
 git clone https://github.com/ultralytics/ultralytics
-cd ultralytics11/examples/YOLOv8-ONNXRuntime-Rust
+cd ultralytics/examples/YOLOv8-ONNXRuntime-Rust
 cargo run --release -- --help
 ```
 

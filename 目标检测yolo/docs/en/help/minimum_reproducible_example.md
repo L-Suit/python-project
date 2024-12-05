@@ -51,7 +51,7 @@ When running inference on a 0-channel image, I get an error related to the dimen
 ```python
 import torch
 
-from ultralytics8 import YOLO
+from ultralytics import YOLO
 
 # Load the model
 model = YOLO("yolov8n.pt")

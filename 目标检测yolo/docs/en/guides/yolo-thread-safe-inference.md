@@ -30,7 +30,7 @@ When using threads in Python, it's important to recognize patterns that can lead
 # Unsafe: Sharing a single model instance across threads
 from threading import Thread
 
-from ultralytics8 import YOLO
+from ultralytics import YOLO
 
 # Instantiate the model outside the thread
 shared_model = YOLO("yolov8n.pt")
@@ -57,7 +57,7 @@ Similarly, here is an unsafe pattern with multiple YOLO model instances:
 # Unsafe: Sharing multiple model instances across threads can still lead to issues
 from threading import Thread
 
-from ultralytics8 import YOLO
+from ultralytics import YOLO
 
 # Instantiate multiple models outside the thread
 shared_model_1 = YOLO("yolov8n_1.pt")
@@ -89,7 +89,7 @@ Here's how to instantiate a YOLO model inside each thread for safe parallel infe
 # Safe: Instantiating a single model inside each thread
 from threading import Thread
 
-from ultralytics8 import YOLO
+from ultralytics import YOLO
 
 
 def thread_safe_predict(image_path):

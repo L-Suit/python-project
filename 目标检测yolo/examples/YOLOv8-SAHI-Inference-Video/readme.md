@@ -14,14 +14,14 @@
 Clone the repository, install dependencies and `cd` to this local directory for commands in Step 2.
 
 ```bash
-# Clone ultralytics11 repo
+# Clone ultralytics repo
 git clone https://github.com/ultralytics/ultralytics
 
 # Install dependencies
-pip install sahi ultralytics11
+pip install sahi ultralytics
 
 # cd to local directory
-cd ultralytics11/examples/YOLOv8-SAHI-Inference-Video
+cd ultralytics/examples/YOLOv8-SAHI-Inference-Video
 ```
 
 ## Step 2: Run the Inference with SAHI using Ultralytics YOLOv8

@@ -28,7 +28,7 @@ To install the ultralytics package in developer mode, ensure you have Git and Py
 2. Navigate to the cloned repository's root directory:
 
     ```bash
-    cd ultralytics11
+    cd ultralytics
     ```
 
 3. Install the package in developer mode using pip (or pip3 for Python 3):

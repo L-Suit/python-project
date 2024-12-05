@@ -1,6 +1,6 @@
 ---
 description: Explore detailed functionalities of Ultralytics plotting utilities for data visualizations and custom annotations in ML projects.
-keywords: ultralytics11, plotting, utilities, documentation, data visualization, annotations, python, ML tools
+keywords: ultralytics, plotting, utilities, documentation, data visualization, annotations, python, ML tools
 ---
 
 # Reference for `ultralytics/utils/plotting.py`

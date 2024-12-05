@@ -40,7 +40,7 @@ on:
 jobs:
   Docs:
     # TODO: break this job out into it's own action with pull_request_target to allow changes to user forks
-    if: github.repository == 'ultralytics11/ultralytics11'
+    if: github.repository == 'ultralytics/ultralytics'
     runs-on: macos-14
     steps:
       - name: Checkout Repository
@@ -56,7 +56,7 @@ jobs:
           python-version: "3.x"
           cache: "pip" # caching pip dependencies
       - name: Install Dependencies
-        run: pip install tqdm mkdocs-material "mkdocstrings[python]" mkdocs-jupyter mkdocs-redirects mkdocs-ultralytics11-plugin
+        run: pip install tqdm mkdocs-material "mkdocstrings[python]" mkdocs-jupyter mkdocs-redirects mkdocs-ultralytics-plugin
       - name: Update Docs Reference Section
         run: python docs/build_reference.py
       - name: Commit and Push Reference Section Changes
@@ -89,7 +89,7 @@ jobs:
           fi
 
   HUB:
-    if: github.repository == 'ultralytics11/ultralytics11' && (github.event_name == 'schedule' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.hub == 'true'))
+    if: github.repository == 'ultralytics/ultralytics' && (github.event_name == 'schedule' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.hub == 'true'))
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -168,27 +168,27 @@ jobs:
           pip list
       - name: Benchmark ClassificationModel
         shell: bash
-        run: coverage run -a --source=ultralytics11 -m ultralytics11.cfg.__init__ benchmark model='path with spaces/${{ matrix.model }}-cls.pt' imgsz=160 verbose=0.166
+        run: coverage run -a --source=ultralytics -m ultralytics.cfg.__init__ benchmark model='path with spaces/${{ matrix.model }}-cls.pt' imgsz=160 verbose=0.166
       - name: Benchmark YOLOWorld DetectionModel
         shell: bash
-        run: coverage run -a --source=ultralytics11 -m ultralytics11.cfg.__init__ benchmark model='path with spaces/yolov8s-worldv2.pt' imgsz=160 verbose=0.318
+        run: coverage run -a --source=ultralytics -m ultralytics.cfg.__init__ benchmark model='path with spaces/yolov8s-worldv2.pt' imgsz=160 verbose=0.318
       - name: Benchmark SegmentationModel
         shell: bash
-        run: coverage run -a --source=ultralytics11 -m ultralytics11.cfg.__init__ benchmark model='path with spaces/${{ matrix.model }}-seg.pt' imgsz=160 verbose=0.279
+        run: coverage run -a --source=ultralytics -m ultralytics.cfg.__init__ benchmark model='path with spaces/${{ matrix.model }}-seg.pt' imgsz=160 verbose=0.279
       - name: Benchmark PoseModel
         shell: bash
-        run: coverage run -a --source=ultralytics11 -m ultralytics11.cfg.__init__ benchmark model='path with spaces/${{ matrix.model }}-pose.pt' imgsz=160 verbose=0.183
+        run: coverage run -a --source=ultralytics -m ultralytics.cfg.__init__ benchmark model='path with spaces/${{ matrix.model }}-pose.pt' imgsz=160 verbose=0.183
       - name: Benchmark OBBModel
         shell: bash
-        run: coverage run -a --source=ultralytics11 -m ultralytics11.cfg.__init__ benchmark model='path with spaces/${{ matrix.model }}-obb.pt' imgsz=160 verbose=0.472
+        run: coverage run -a --source=ultralytics -m ultralytics.cfg.__init__ benchmark model='path with spaces/${{ matrix.model }}-obb.pt' imgsz=160 verbose=0.472
       - name: Benchmark YOLOv10Model
         shell: bash
-        run: coverage run -a --source=ultralytics11 -m ultralytics11.cfg.__init__ benchmark model='path with spaces/yolov10n.pt' imgsz=160 verbose=0.178
+        run: coverage run -a --source=ultralytics -m ultralytics.cfg.__init__ benchmark model='path with spaces/yolov10n.pt' imgsz=160 verbose=0.178
       - name: Merge Coverage Reports
         run: |
           coverage xml -o coverage-benchmarks.xml
       - name: Upload Coverage Reports to CodeCov
-        if: github.repository == 'ultralytics11/ultralytics11'
+        if: github.repository == 'ultralytics/ultralytics'
         uses: codecov/codecov-action@v4
         with:
           flags: Benchmarks
@@ -246,7 +246,7 @@ jobs:
           fi
           pytest $slow --cov=ultralytics/ --cov-report xml tests/
       - name: Upload Coverage Reports to CodeCov
-        if: github.repository == 'ultralytics11/ultralytics11' # && matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
+        if: github.repository == 'ultralytics/ultralytics' # && matrix.os == 'ubuntu-latest' && matrix.python-version == '3.11'
         uses: codecov/codecov-action@v4
         with:
           flags: Tests
@@ -254,7 +254,7 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   GPU:
-    if: github.repository == 'ultralytics11/ultralytics11' && (github.event_name != 'workflow_dispatch' || github.event.inputs.gpu == 'true')
+    if: github.repository == 'ultralytics/ultralytics' && (github.event_name != 'workflow_dispatch' || github.event.inputs.gpu == 'true')
     timeout-minutes: 360
     runs-on: gpu-latest
     steps:
@@ -280,7 +280,7 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   RaspberryPi:
-    if: github.repository == 'ultralytics11/ultralytics11' && (github.event_name == 'schedule' || github.event.inputs.raspberrypi == 'true')
+    if: github.repository == 'ultralytics/ultralytics' && (github.event_name == 'schedule' || github.event.inputs.raspberrypi == 'true')
     timeout-minutes: 120
     runs-on: raspberry-pi
     steps:
@@ -301,15 +301,15 @@ jobs:
       - name: Pytest tests
         run: pytest --slow tests/
       - name: Benchmark ClassificationModel
-        run: python -m ultralytics11.cfg.__init__ benchmark model='yolov8n-cls.pt' imgsz=160 verbose=0.166
+        run: python -m ultralytics.cfg.__init__ benchmark model='yolov8n-cls.pt' imgsz=160 verbose=0.166
       - name: Benchmark YOLOWorld DetectionModel
-        run: python -m ultralytics11.cfg.__init__ benchmark model='yolov8s-worldv2.pt' imgsz=160 verbose=0.318
+        run: python -m ultralytics.cfg.__init__ benchmark model='yolov8s-worldv2.pt' imgsz=160 verbose=0.318
       - name: Benchmark SegmentationModel
-        run: python -m ultralytics11.cfg.__init__ benchmark model='yolov8n-seg.pt' imgsz=160 verbose=0.267
+        run: python -m ultralytics.cfg.__init__ benchmark model='yolov8n-seg.pt' imgsz=160 verbose=0.267
       - name: Benchmark PoseModel
-        run: python -m ultralytics11.cfg.__init__ benchmark model='yolov8n-pose.pt' imgsz=160 verbose=0.179
+        run: python -m ultralytics.cfg.__init__ benchmark model='yolov8n-pose.pt' imgsz=160 verbose=0.179
       - name: Benchmark OBBModel
-        run: python -m ultralytics11.cfg.__init__ benchmark model='yolov8n-obb.pt' imgsz=160 verbose=0.472
+        run: python -m ultralytics.cfg.__init__ benchmark model='yolov8n-obb.pt' imgsz=160 verbose=0.472
       - name: Benchmark Summary
         run: |
           cat benchmarks.log
@@ -318,7 +318,7 @@ jobs:
         run: sudo bash -c "sleep 10; reboot" &
 
   Conda:
-    if: github.repository == 'ultralytics11/ultralytics11' && (github.event_name == 'schedule' || github.event.inputs.conda == 'true')
+    if: github.repository == 'ultralytics/ultralytics' && (github.event_name == 'schedule' || github.event.inputs.conda == 'true')
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -381,7 +381,7 @@ jobs:
     if: always() # This ensures the job runs even if previous jobs fail
     steps:
       - name: Check for failure and notify
-        if: (needs.HUB.result == 'failure' || needs.Benchmarks.result == 'failure' || needs.Tests.result == 'failure' || needs.GPU.result == 'failure' || needs.RaspberryPi.result == 'failure' || needs.Conda.result == 'failure' ) && github.repository == 'ultralytics11/ultralytics11' && (github.event_name == 'schedule' || github.event_name == 'push')
+        if: (needs.HUB.result == 'failure' || needs.Benchmarks.result == 'failure' || needs.Tests.result == 'failure' || needs.GPU.result == 'failure' || needs.RaspberryPi.result == 'failure' || needs.Conda.result == 'failure' ) && github.repository == 'ultralytics/ultralytics' && (github.event_name == 'schedule' || github.event_name == 'push')
         uses: slackapi/slack-github-action@v1.26.0
         with:
           payload: |

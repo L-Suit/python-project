@@ -9,9 +9,9 @@ from pathlib import Path
 import pytest
 
 from tests import MODEL, SOURCE, TMP
-from ultralytics8 import YOLO, download
-from ultralytics8.utils import DATASETS_DIR, SETTINGS
-from ultralytics8.utils.checks import check_requirements
+from ultralytics import YOLO, download
+from ultralytics.utils import DATASETS_DIR, SETTINGS
+from ultralytics.utils.checks import check_requirements
 
 
 @pytest.mark.skipif(not check_requirements("ray", install=False), reason="ray[tune] not installed")
@@ -115,9 +115,9 @@ def test_triton():
 @pytest.mark.skipif(not check_requirements("pycocotools", install=False), reason="pycocotools not installed")
 def test_pycocotools():
     """Validate model predictions using pycocotools."""
-    from ultralytics8.models.yolo.detect import DetectionValidator
-    from ultralytics8.models.yolo.pose import PoseValidator
-    from ultralytics8.models.yolo.segment import SegmentationValidator
+    from ultralytics.models.yolo.detect import DetectionValidator
+    from ultralytics.models.yolo.pose import PoseValidator
+    from ultralytics.models.yolo.segment import SegmentationValidator
 
     # Download annotations after each dataset downloads first
     url = "https://github.com/ultralytics/assets/releases/download/v8.2.0/"

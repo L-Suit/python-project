@@ -1,6 +1,6 @@
 ---
 comments: true
-description: Explore various utility functions in ultralytics11.data.explorer.utils including schema definitions, batch sanitization, and query results plotting.
+description: Explore various utility functions in ultralytics.data.explorer.utils including schema definitions, batch sanitization, and query results plotting.
 keywords: Ultralytics, data explorer, utils, schema, sanitize batch, plot query results, SQL query, machine learning
 ---
 

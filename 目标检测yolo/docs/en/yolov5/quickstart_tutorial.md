@@ -26,7 +26,7 @@ Experience the simplicity of YOLOv5 [PyTorch Hub](tutorials/pytorch_hub_model_lo
 import torch
 
 # Model loading
-model = torch.hub.load("ultralytics11/yolov5", "yolov5s")  # Can be 'yolov5n' - 'yolov5x6', or 'custom'
+model = torch.hub.load("ultralytics/yolov5", "yolov5s")  # Can be 'yolov5n' - 'yolov5x6', or 'custom'
 
 # Inference on images
 img = "https://ultralytics.com/images/zidane.jpg"  # Can be a file, Path, PIL, OpenCV, numpy, or list of images

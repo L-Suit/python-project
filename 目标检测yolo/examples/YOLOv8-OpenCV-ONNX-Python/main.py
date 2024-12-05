@@ -5,8 +5,8 @@ import argparse
 import cv2.dnn
 import numpy as np
 
-from ultralytics8.utils import ASSETS, yaml_load
-from ultralytics8.utils.checks import check_yaml
+from ultralytics.utils import ASSETS, yaml_load
+from ultralytics.utils.checks import check_yaml
 
 CLASSES = yaml_load(check_yaml("coco8.yaml"))["names"]
 colors = np.random.uniform(0, 255, size=(len(CLASSES), 3))

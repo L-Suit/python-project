@@ -158,7 +158,7 @@ To start training your model using your own agent, follow the instructions shown
 Install the `ultralytics` package from [PyPI](https://pypi.org/project/ultralytics).
 
 ```bash
-pip install -U ultralytics11
+pip install -U ultralytics
 ```
 
 Next, use the Python code provided to start training the model.
