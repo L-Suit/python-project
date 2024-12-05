@@ -6,9 +6,10 @@
       <sourceFolder url="file://$MODULE_DIR$/目标检测yolo/ultralytics" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/低照度增强/EnlightenGAN" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/目标检测" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ultralytics-v11" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Remote Python 3.8.10 (sftp://root@connect.westb.seetacloud.com:48205/root/miniconda3/bin/python)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">

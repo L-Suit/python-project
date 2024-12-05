@@ -143,6 +143,9 @@ def main():
     new_dataset_folder = r'D:\dataset\forest_31pests_weather/images'  # 新的数据集存放位置
     allocation_record = './forest31_process_record.csv'  # 分配记录文件路径
 
+    # 设置随机种子，以保证每次运行得到相同的随机序列
+    # random.seed(42)  # 使用固定的随机种子
+
     # 获取所有图片文件的路径
     image_paths = [os.path.join(original_images_folder, f) for f in os.listdir(original_images_folder) if
                    f.endswith('.jpg')]
