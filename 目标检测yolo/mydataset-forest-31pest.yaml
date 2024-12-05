@@ -1,0 +1,59 @@
+# Example usage: yolo train data=coco8.yaml
+# parent
+# ├── ultralytics
+# └── datasets
+#     └── coco8  ← downloads here (1 MB)
+
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+###### 主机数据集目录 #######
+path: D:\dataset\forest_31pests_weather\images # dataset root dir
+train: train # train images (relative to 'path') 4 images
+val: val # val images (relative to 'path') 4 images
+
+###### 服务器数据集目录 ######
+#path: C:/ProgramData/lsh-dataset/forest-31-pests/yolo/images
+#train: train # train images (relative to 'path') 4 images
+#val: val # val images (relative to 'path') 4 images
+#test: # test images (optional)
+
+###### Autodl平台数据集目录 ######
+#path: /root/autodl-tmp/forest-31-pests/yolo/images
+#train: train # train images (relative to 'path') 4 images
+#val: val # val images (relative to 'path') 4 images
+
+
+# Classes
+names:
+  0: Drosicha_contrahens_female
+  1: Drosicha_contrahens_male
+  2: Chalcophora_japonica
+  3: Anoplophora_chinensis
+  4: Psacothea_hilaris(Pascoe)
+  5: Apriona_germari(Hope)
+  6: Monochamus_alternatus
+  7: Plagiodera_versicolora(Laicharting)
+  8: Latoia_consocia_Walker
+  9: Hyphantria_cunea
+  10: Cnidocampa_flavescens(Walker）
+  11: Cnidocampa_flavescens(Walker_pupa)
+  12: Erthesina_fullo
+  13: Erthesina_fullo_nymph-2
+  14: Erthesina_fullo_nymph
+  15: Spilarctia_subcarnea(Walker）
+  16: Psilogramma_menephron
+  17: Sericinus_montela
+  18: Sericinus_montela_larvae
+  19: Clostera_anachoreta
+  20: Micromelalopha_troglodyta(Graeser)
+  21: Latoia_consocia_Walker_larvae
+  22: Plagiodera_versicolora(Laicharting)_larvae
+  23: Plagiodera_versicolora(Laicharting)_ovum
+  24: Spilarctia_subcarnea(Walker)_larvae
+  25: Spilarctia_subcarnea(Walker)_larvae-2
+  26: Psilogramma_menephron_larvae
+  27: Cerambycidae_larvae
+  28: Micromelalopha_troglodyta(Graeser)_larvae
+  29: Hyphantria_cunea_larvae
+  30: Hyphantria_cunea_pupa
+
+# Download script/URL (optional)
