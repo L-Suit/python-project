@@ -131,7 +131,7 @@ If you have a dataset that uses the [segmentation dataset format](../datasets/se
 ```python
 import numpy as np
 
-from ultralytics.utils.ops import segments2boxes
+from ultralytics8.utils.ops import segments2boxes
 
 segments = np.array(
     [
@@ -196,7 +196,7 @@ Convert a single polygon (as list) to a binary mask of the specified image size.
 ```python
 import numpy as np
 
-from ultralytics.data.utils import polygon2mask
+from ultralytics8.data.utils import polygon2mask
 
 imgsz = (1080, 810)
 polygon = np.array([805, 392, 797, 400, ..., 808, 714, 808, 392])  # (238, 2)
@@ -218,7 +218,7 @@ To manage bounding box data, the `Bboxes` class will help to convert between box
 ```python
 import numpy as np
 
-from ultralytics.utils.instance import Bboxes
+from ultralytics8.utils.instance import Bboxes
 
 boxes = Bboxes(
     bboxes=np.array(
@@ -312,7 +312,7 @@ Convert bounding box coordinates from (x1, y1, x2, y2) format to (x, y, width, h
 ```python
 import numpy as np
 
-from ultralytics.utils.ops import xyxy2xywh
+from ultralytics8.utils.ops import xyxy2xywh
 
 xyxy_boxes = np.array(
     [
@@ -340,7 +340,7 @@ print(xywh)
 ### All Bounding Box Conversions
 
 ```python
-from ultralytics.utils.ops import (
+from ultralytics8.utils.ops import (
     ltwh2xywh,
     ltwh2xyxy,
     xywh2ltwh,  # xywh → top-left corner, w, h
@@ -412,7 +412,7 @@ image_with_bboxes = ann.result()
 import cv2 as cv
 import numpy as np
 
-from ultralytics.utils.plotting import Annotator, colors
+from ultralytics8.utils.plotting import Annotator, colors
 
 obb_names = {10: "small vehicle"}
 obb_image = cv.imread("datasets/dota8/images/train/P1142__1024__0___824.jpg")
@@ -449,8 +449,8 @@ image_with_obb = ann.result()
 ```python
 import cv2
 
-from ultralytics import YOLO
-from ultralytics.utils.plotting import Annotator, colors
+from ultralytics8 import YOLO
+from ultralytics8.utils.plotting import Annotator, colors
 
 model = YOLO("yolov8s.pt")
 cap = cv2.VideoCapture("path/to/video/file.mp4")
@@ -489,8 +489,8 @@ cv2.destroyAllWindows()
 ```python
 import cv2
 
-from ultralytics import YOLO
-from ultralytics.utils.plotting import Annotator, colors
+from ultralytics8 import YOLO
+from ultralytics8.utils.plotting import Annotator, colors
 
 model = YOLO("yolov8s.pt")
 cap = cv2.VideoCapture("path/to/video/file.mp4")
@@ -533,7 +533,7 @@ See the [`Annotator` Reference Page](../reference/utils/plotting.md#ultralytics.
 Check duration for code to run/process either using `with` or as a decorator.
 
 ```python
-from ultralytics.utils.ops import Profile
+from ultralytics8.utils.ops import Profile
 
 with Profile(device="cuda:0") as dt:
     pass  # operation to measure
@@ -547,7 +547,7 @@ print(dt)
 Want or need to use the formats of [images or videos types supported](../modes/predict.md#image-and-video-formats) by Ultralytics programmatically? Use these constants if you need.
 
 ```python
-from ultralytics.data.utils import IMG_FORMATS, VID_FORMATS
+from ultralytics8.data.utils import IMG_FORMATS, VID_FORMATS
 
 print(IMG_FORMATS)
 # {'tiff', 'pfm', 'bmp', 'mpo', 'dng', 'jpeg', 'png', 'webp', 'tif', 'jpg'}
@@ -561,7 +561,7 @@ print(VID_FORMATS)
 Calculates the nearest whole number to `x` to make evenly divisible when divided by `y`.
 
 ```python
-from ultralytics.utils.ops import make_divisible
+from ultralytics8.utils.ops import make_divisible
 
 make_divisible(7, 3)
 # >>> 9

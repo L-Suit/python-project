@@ -1,6 +1,6 @@
 # Example usage: yolo train data=coco8.yaml
 # parent
-# ├── ultralytics
+# ├── ultralytics11
 # └── datasets
 #     └── coco8  ← downloads here (1 MB)
 

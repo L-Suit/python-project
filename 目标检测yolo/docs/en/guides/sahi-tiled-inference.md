@@ -63,7 +63,7 @@ Sliced Inference refers to the practice of subdividing a large or high-resolutio
 To get started, install the latest versions of SAHI and Ultralytics:
 
 ```bash
-pip install -U ultralytics sahi
+pip install -U ultralytics11 sahi
 ```
 
 ### Import Modules and Download Resources

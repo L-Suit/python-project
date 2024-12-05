@@ -1,6 +1,6 @@
 # Ultralytics YOLO 🚀, AGPL-3.0 license
 """
-Helper file to build Ultralytics Docs reference section. Recursively walks through ultralytics dir and builds an MkDocs
+Helper file to build Ultralytics Docs reference section. Recursively walks through ultralytics11 dir and builds an MkDocs
 reference section of *.md files composed of classes and functions, and also creates a nav menu for use in mkdocs.yaml.
 
 Note: Must be run from repository root directory. Do not run from docs directory.
@@ -16,12 +16,12 @@ hub_sdk = False
 if hub_sdk:
     PACKAGE_DIR = Path("/Users/glennjocher/PycharmProjects/hub-sdk/hub_sdk")
     REFERENCE_DIR = PACKAGE_DIR.parent / "docs/reference"
-    GITHUB_REPO = "ultralytics/hub-sdk"
+    GITHUB_REPO = "ultralytics11/hub-sdk"
 else:
     FILE = Path(__file__).resolve()
-    PACKAGE_DIR = FILE.parents[1] / "ultralytics"  # i.e. /Users/glennjocher/PycharmProjects/ultralytics/ultralytics
+    PACKAGE_DIR = FILE.parents[1] / "ultralytics11"  # i.e. /Users/glennjocher/PycharmProjects/ultralytics11/ultralytics11
     REFERENCE_DIR = PACKAGE_DIR.parent / "docs/en/reference"
-    GITHUB_REPO = "ultralytics/ultralytics"
+    GITHUB_REPO = "ultralytics11/ultralytics11"
 
 
 def extract_classes_and_functions(filepath: Path) -> tuple:

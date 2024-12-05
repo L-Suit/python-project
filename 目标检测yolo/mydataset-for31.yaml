@@ -1,6 +1,6 @@
 # Example usage: yolo train data=coco8.yaml
 # parent
-# ├── ultralytics
+# ├── ultralytics11
 # └── datasets
 #     └── coco8  ← downloads here (1 MB)
 
@@ -17,10 +17,9 @@
 #test: # test images (optional)
 
 ###### Autodl平台数据集目录 ######
-path: /root/autodl-tmp/forest-31-pests/yolo/images
+path: /root/dataset/for31-weather/images
 train: train # train images (relative to 'path') 4 images
 val: val # val images (relative to 'path') 4 images
-
 
 
 # Classes

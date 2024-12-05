@@ -64,7 +64,7 @@ Apart from the ROS environment, you will need to install the following dependenc
 - **Ultralytics package**:
 
     ```bash
-    pip install ultralytics
+    pip install ultralytics11
     ```
 
 ## Use Ultralytics with ROS `sensor_msgs/Image`
@@ -86,11 +86,11 @@ import time
 
 import rospy
 
-from ultralytics import YOLO
+from ultralytics8 import YOLO
 
 detection_model = YOLO("yolov8m.pt")
 segmentation_model = YOLO("yolov8m-seg.pt")
-rospy.init_node("ultralytics")
+rospy.init_node("ultralytics11")
 time.sleep(1)
 ```
 
@@ -99,8 +99,8 @@ Initialize two ROS topics: one for [detection](../tasks/detect.md) and one for [
 ```python
 from sensor_msgs.msg import Image
 
-det_image_pub = rospy.Publisher("/ultralytics/detection/image", Image, queue_size=5)
-seg_image_pub = rospy.Publisher("/ultralytics/segmentation/image", Image, queue_size=5)
+det_image_pub = rospy.Publisher("/ultralytics11/detection/image", Image, queue_size=5)
+seg_image_pub = rospy.Publisher("/ultralytics11/segmentation/image", Image, queue_size=5)
 ```
 
 Finally, create a subscriber that listens to messages on the `/camera/color/image_raw` topic and calls a callback function for each new message. This callback function receives messages of type `sensor_msgs/Image`, converts them into a numpy array using `ros_numpy`, processes the images with the previously instantiated YOLO models, annotates the images, and then publishes them back to the respective topics: `/ultralytics/detection/image` for detection and `/ultralytics/segmentation/image` for segmentation.
@@ -198,12 +198,12 @@ import rospy
 from sensor_msgs.msg import Image
 from std_msgs.msg import String
 
-from ultralytics import YOLO
+from ultralytics8 import YOLO
 
 detection_model = YOLO("yolov8m.pt")
-rospy.init_node("ultralytics")
+rospy.init_node("ultralytics11")
 time.sleep(1)
-classes_pub = rospy.Publisher("/ultralytics/detection/classes", String, queue_size=5)
+classes_pub = rospy.Publisher("/ultralytics11/detection/classes", String, queue_size=5)
 
 
 def callback(data):
@@ -255,14 +255,14 @@ import time
 import rospy
 from std_msgs.msg import String
 
-from ultralytics import YOLO
+from ultralytics8 import YOLO
 
-rospy.init_node("ultralytics")
+rospy.init_node("ultralytics11")
 time.sleep(1)
 
 segmentation_model = YOLO("yolov8m-seg.pt")
 
-classes_pub = rospy.Publisher("/ultralytics/detection/distance", String, queue_size=5)
+classes_pub = rospy.Publisher("/ultralytics11/detection/distance", String, queue_size=5)
 ```
 
 Next, define a callback function that processes the incoming depth image message. The function waits for the depth image and RGB image messages, converts them into numpy arrays, and applies the segmentation model to the RGB image. It then extracts the segmentation mask for each detected object and calculates the average distance of the object from the camera using the depth image. Most sensors have a maximum distance, known as the clip distance, beyond which values are represented as inf (`np.inf`). Before processing, it is important to filter out these null values and assign them a value of `0`. Finally, it publishes the detected objects along with their average distances to the `/ultralytics/detection/distance` topic.
@@ -380,9 +380,9 @@ import time
 
 import rospy
 
-from ultralytics import YOLO
+from ultralytics8 import YOLO
 
-rospy.init_node("ultralytics")
+rospy.init_node("ultralytics11")
 time.sleep(1)
 segmentation_model = YOLO("yolov8m-seg.pt")
 ```

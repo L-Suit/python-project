@@ -1,5 +1,5 @@
 ---
-description: Learn how to utilize the ultralytics.data.split_dota module to process and split DOTA datasets efficiently. Explore detailed functions and examples.
+description: Learn how to utilize the ultralytics11.data.split_dota module to process and split DOTA datasets efficiently. Explore detailed functions and examples.
 keywords: Ultralytics, DOTA dataset, data splitting, YOLO, Python, bbox_iof, load_yolo_dota, get_windows, crop_and_save
 ---
 

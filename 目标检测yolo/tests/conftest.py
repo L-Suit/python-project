@@ -39,7 +39,7 @@ def pytest_sessionstart(session):
     Args:
         session (pytest.Session): The pytest session object.
     """
-    from ultralytics.utils.torch_utils import init_seeds
+    from ultralytics8.utils.torch_utils import init_seeds
 
     init_seeds()
     shutil.rmtree(TMP, ignore_errors=True)  # delete any existing tests/tmp directory
@@ -58,7 +58,7 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config):
         exitstatus (int): The exit status of the test run.
         config (pytest.config.Config): The pytest config object.
     """
-    from ultralytics.utils import WEIGHTS_DIR
+    from ultralytics8.utils import WEIGHTS_DIR
 
     # Remove files
     models = [path for x in ["*.onnx", "*.torchscript"] for path in WEIGHTS_DIR.rglob(x)]

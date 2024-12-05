@@ -1,5 +1,5 @@
 ---
-description: Explore the ultralytics.models.yolo.model module for YOLO object detection. Learn initialization, model mapping, and more.
+description: Explore the ultralytics11.models.yolo.model module for YOLO object detection. Learn initialization, model mapping, and more.
 keywords: YOLO, object detection, Ultralytics, YOLO model, machine learning, Python, model initialization
 ---
 

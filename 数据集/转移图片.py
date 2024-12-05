@@ -15,9 +15,9 @@ def move_files(src_dir, target_dir, label_names):
 
 def main():
     # 源目录和目标目录
-    label_dir = r'D:\dataset\forest_31pests_weather\labels\val'
-    src_dir = r'D:\dataset\forest_31pests_weather\images'
-    target_dir = r'D:\dataset\forest_31pests_weather\images\val'
+    label_dir = r'/root/dataset/for31-weather/labels/val'
+    src_dir = r'/root/dataset/for31-weather/images'
+    target_dir = r'/root/dataset/for31-weather/images/val'
 
     # 读取源目录下所有文件的名称，并去除后缀
     labels_files = set(remove_extension(file) for file in os.listdir(label_dir))

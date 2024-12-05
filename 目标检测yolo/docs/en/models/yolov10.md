@@ -123,7 +123,7 @@ Here is a detailed comparison of YOLOv10 variants with other state-of-the-art mo
 For predicting new images with YOLOv10:
 
 ```python
-from ultralytics import YOLO
+from ultralytics8 import YOLO
 
 # Load a pre-trained YOLOv10n model
 model = YOLO("yolov10n.pt")
@@ -138,7 +138,7 @@ results[0].show()
 For training YOLOv10 on a custom dataset:
 
 ```python
-from ultralytics import YOLO
+from ultralytics8 import YOLO
 
 # Load YOLOv10n model from scratch
 model = YOLO("yolov10n.yaml")

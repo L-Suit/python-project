@@ -83,7 +83,7 @@ To pull the latest image:
 
 ```bash
 # Set image name as a variable
-t=ultralytics/ultralytics:latest
+t=ultralytics11/ultralytics11:latest
 
 # Pull the latest Ultralytics image from Docker Hub
 sudo docker pull $t

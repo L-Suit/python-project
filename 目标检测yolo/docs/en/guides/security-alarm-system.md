@@ -79,8 +79,8 @@ from time import time
 import cv2
 import torch
 
-from ultralytics import YOLO
-from ultralytics.utils.plotting import Annotator, colors
+from ultralytics8 import YOLO
+from ultralytics8.utils.plotting import Annotator, colors
 
 
 class ObjectDetection:

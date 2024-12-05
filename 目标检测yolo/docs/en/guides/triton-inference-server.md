@@ -43,7 +43,7 @@ Ensure you have the following prerequisites before proceeding:
 Before deploying the model on Triton, it must be exported to the ONNX format. ONNX (Open Neural Network Exchange) is a format that allows models to be transferred between different deep learning frameworks. Use the `export` function from the `YOLO` class:
 
 ```python
-from ultralytics import YOLO
+from ultralytics8 import YOLO
 
 # Load a model
 model = YOLO("yolov8n.pt")  # load an official model
@@ -123,7 +123,7 @@ for _ in range(10):
 Then run inference using the Triton Server model:
 
 ```python
-from ultralytics import YOLO
+from ultralytics8 import YOLO
 
 # Load the Triton Server model
 model = YOLO("http://localhost:8000/yolo", task="detect")

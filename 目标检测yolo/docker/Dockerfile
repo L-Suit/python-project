@@ -1,5 +1,5 @@
 # Ultralytics YOLO 🚀, AGPL-3.0 license
-# Builds ultralytics/ultralytics:latest image on DockerHub https://hub.docker.com/r/ultralytics/ultralytics
+# Builds ultralytics11/ultralytics11:latest image on DockerHub https://hub.docker.com/r/ultralytics/ultralytics
 # Image is CUDA-optimized for YOLOv8 single/multi-GPU training and inference
 
 # Start FROM PyTorch image https://hub.docker.com/r/pytorch/pytorch or nvcr.io/nvidia/pytorch:23.03-py3
@@ -53,25 +53,25 @@ RUN rm -rf tmp
 # Usage Examples -------------------------------------------------------------------------------------------------------
 
 # Build and Push
-# t=ultralytics/ultralytics:latest && sudo docker build -f docker/Dockerfile -t $t . && sudo docker push $t
+# t=ultralytics11/ultralytics11:latest && sudo docker build -f docker/Dockerfile -t $t . && sudo docker push $t
 
 # Pull and Run with access to all GPUs
-# t=ultralytics/ultralytics:latest && sudo docker pull $t && sudo docker run -it --ipc=host --gpus all $t
+# t=ultralytics11/ultralytics11:latest && sudo docker pull $t && sudo docker run -it --ipc=host --gpus all $t
 
 # Pull and Run with access to GPUs 2 and 3 (inside container CUDA devices will appear as 0 and 1)
-# t=ultralytics/ultralytics:latest && sudo docker pull $t && sudo docker run -it --ipc=host --gpus '"device=2,3"' $t
+# t=ultralytics11/ultralytics11:latest && sudo docker pull $t && sudo docker run -it --ipc=host --gpus '"device=2,3"' $t
 
 # Pull and Run with local directory access
-# t=ultralytics/ultralytics:latest && sudo docker pull $t && sudo docker run -it --ipc=host --gpus all -v "$(pwd)"/datasets:/usr/src/datasets $t
+# t=ultralytics11/ultralytics11:latest && sudo docker pull $t && sudo docker run -it --ipc=host --gpus all -v "$(pwd)"/datasets:/usr/src/datasets $t
 
 # Kill all
 # sudo docker kill $(sudo docker ps -q)
 
 # Kill all image-based
-# sudo docker kill $(sudo docker ps -qa --filter ancestor=ultralytics/ultralytics:latest)
+# sudo docker kill $(sudo docker ps -qa --filter ancestor=ultralytics11/ultralytics11:latest)
 
 # DockerHub tag update
-# t=ultralytics/ultralytics:latest tnew=ultralytics/ultralytics:v6.2 && sudo docker pull $t && sudo docker tag $t $tnew && sudo docker push $tnew
+# t=ultralytics11/ultralytics11:latest tnew=ultralytics11/ultralytics11:v6.2 && sudo docker pull $t && sudo docker tag $t $tnew && sudo docker push $tnew
 
 # Clean up
 # sudo docker system prune -a --volumes
@@ -83,4 +83,4 @@ RUN rm -rf tmp
 # python -m torch.distributed.run --nproc_per_node 2 --master_port 1 train.py --epochs 3
 
 # GCP VM from Image
-# docker.io/ultralytics/ultralytics:latest
+# docker.io/ultralytics11/ultralytics11:latest

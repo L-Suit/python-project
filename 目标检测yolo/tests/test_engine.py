@@ -4,11 +4,11 @@ import sys
 from unittest import mock
 
 from tests import MODEL
-from ultralytics import YOLO
-from ultralytics.cfg import get_cfg
-from ultralytics.engine.exporter import Exporter
-from ultralytics.models.yolo import classify, detect, segment
-from ultralytics.utils import ASSETS, DEFAULT_CFG, WEIGHTS_DIR
+from ultralytics8 import YOLO
+from ultralytics8.cfg import get_cfg
+from ultralytics8.engine.exporter import Exporter
+from ultralytics8.models.yolo import classify, detect, segment
+from ultralytics8.utils import ASSETS, DEFAULT_CFG, WEIGHTS_DIR
 
 
 def test_func(*args):  # noqa

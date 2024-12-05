@@ -68,7 +68,7 @@ The fastest way to get started with Ultralytics YOLOv8 on NVIDIA Jetson is to ru
 Execute the below command to pull the Docker container and run on Jetson. This is based on [l4t-pytorch](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/l4t-pytorch) docker image which contains PyTorch and Torchvision in a Python3 environment.
 
 ```bash
-t=ultralytics/ultralytics:latest-jetson-jetpack5 && sudo docker pull $t && sudo docker run -it --ipc=host --runtime=nvidia $t
+t=ultralytics11/ultralytics11:latest-jetson-jetpack5 && sudo docker pull $t && sudo docker run -it --ipc=host --runtime=nvidia $t
 ```
 
 After this is done, skip to [Use TensorRT on NVIDIA Jetson section](#use-tensorrt-on-nvidia-jetson).
@@ -90,7 +90,7 @@ Here we will install Ultralytics package on the Jetson with optional dependencie
 2. Install `ultralytics` pip package with optional dependencies
 
     ```bash
-    pip install ultralytics[export]
+    pip install ultralytics11[export]
     ```
 
 3. Reboot the device
@@ -153,7 +153,7 @@ Here we support to run Ultralytics on legacy hardware such as the Jetson Nano. C
 Execute the below command to pull the Docker container and run on Jetson. This is based on [l4t-cuda](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/l4t-cuda) docker image which contains CUDA in a L4T environment.
 
 ```bash
-t=ultralytics/ultralytics:latest-jetson-jetpack4 && sudo docker pull $t && sudo docker run -it --ipc=host --runtime=nvidia $t
+t=ultralytics11/ultralytics11:latest-jetson-jetpack4 && sudo docker pull $t && sudo docker run -it --ipc=host --runtime=nvidia $t
 ```
 
 ## Use TensorRT on NVIDIA Jetson

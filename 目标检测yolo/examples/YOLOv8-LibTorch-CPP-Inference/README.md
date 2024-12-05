@@ -14,8 +14,8 @@ This example demonstrates how to perform inference using YOLOv8 models in C++ wi
 ## Usage
 
 ```bash
-git clone ultralytics
-cd ultralytics
+git clone ultralytics11
+cd ultralytics11
 pip install .
 cd examples/YOLOv8-LibTorch-CPP-Inference
 
