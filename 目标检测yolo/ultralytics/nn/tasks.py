@@ -924,10 +924,11 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
                 )  # num heads
 
             args = [c1, c2, *args[1:]]
-            if m in {BottleneckCSP, C1, C2, C2f, C2fAttn, C3, C3TR, C3Ghost, C3x, RepC3, C2fCIB, C2f_FasterBlock}:
+            if m in {BottleneckCSP, C1, C2, C2f, C2fAttn, C3, C3TR, C3Ghost, C3x, RepC3, C2fCIB,
+                     C2f_FasterBlock,C2f_SENetV2}:
                 args.insert(2, n)  # number of repeats
                 n = 1
-        elif m is AIFI:
+        elif m in {AIFI,SELayerV2}:
             args = [ch[f], *args]
         elif m in {HGStem, HGBlock}:
             c1, cm, c2 = ch[f], args[0], args[1]

@@ -35,20 +35,13 @@ def alpha_rain(rain, img, beta=0.8):
     return rain_result
 
 def main():
-    image = cv2.imread(r'D:\Pycharm_project\python-project\data/img/5(39).jpg')
+    image = cv2.imread(r'D:\Pycharm_project\python-project\data/img/5(87).jpg')
 
-    # 生成高斯噪声
-    noise = np.random.normal(0, 40, image.shape)  # mean均值，sigma为高斯噪声的标准层
+    # 应用高斯模糊效果
+    blurred_image = cv2.GaussianBlur(image, (9, 9), 0)  # (15, 15) 是卷积核的大小，可以调整
 
-    # 将噪声添加到原图
-    noisy_image = image + noise
-
-    # 裁剪值到[0, 255]范围，并转换为uint8类型
-    noisy_image = np.clip(noisy_image, 0, 255).astype(np.uint8)
-    cv2.imwrite(r'D:\Pycharm_project\python-project\data/img/result1.jpg', noisy_image)
-    cv2.imshow("Display Window",noisy_image)
+    cv2.imshow("Display Window",blurred_image)
     cv2.waitKey(0)
 
 if __name__ == '__main__':
-    print(int(26*0.16))
     main()
