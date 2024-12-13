@@ -1,16 +1,12 @@
-##从数据集中随机加上 阴天、雨天、雾天的效果，并保存到新的数据集中
 import math
 import os
 import random
 from shutil import copyfile
+from concurrent.futures import ProcessPoolExecutor, as_completed
 
 import cv2
 import numpy as np
 from PIL import Image
-
-# 设置随机种子，以保证每次运行得到相同的随机序列
-# random.seed(42)  # 使用固定的随机种子
-
 
 # 定义图片处理函数
 def process_image(image_path, output_folder, process_type):
@@ -26,7 +22,6 @@ def process_image(image_path, output_folder, process_type):
     elif process_type == 'rain':                    # 雨天效果
         # 降低亮度对比度
         image = cv2.convertScaleAbs(image, alpha=0.7, beta=-10)
-        # value = random.randint(300, 600)
         noise = get_noise(image, value=600)
         rain = rain_blur(noise, length=50, angle=-25, w=3)
         rain_result = alpha_rain(rain, image, beta=0.6)
@@ -56,13 +51,13 @@ def process_image(image_path, output_folder, process_type):
         img_processed = image / 255  # 归一化
 
         # 伽马变换
-        r=random.uniform(1.5,5)
-        dark_image=Dark_loop(img_processed,r)
-        img_processed=np.clip(dark_image*255, 0, 255) # 限制范围在(0,255)内
+        r = random.uniform(1.5, 5)
+        dark_image = Dark_loop(img_processed, r)
+        img_processed = np.clip(dark_image * 255, 0, 255)  # 限制范围在(0,255)内
         img_processed = img_processed.astype(np.uint8)
     elif process_type == 'noise':                   # 添加高斯噪声
         # 生成高斯噪声
-        noise = np.random.normal(0,random.randint(25,40), image.shape)  #mean均值，sigma为高斯噪声的标准层
+        noise = np.random.normal(0, random.randint(25, 40), image.shape)  # mean均值，sigma为高斯噪声的标准层
         # 将噪声添加到原图
         noisy_image = image + noise
         # 裁剪值到[0, 255]范围，并转换为uint8类型
@@ -71,6 +66,14 @@ def process_image(image_path, output_folder, process_type):
     # 构建输出路径
     output_path = os.path.join(output_folder, os.path.basename(image_path))
     cv2.imwrite(output_path, img_processed)
+
+
+def process_images_in_parallel(image_paths, output_folder, process_type, max_workers=4):
+    """使用多进程并行处理图片"""
+    with ProcessPoolExecutor(max_workers=max_workers) as executor:
+        futures = [executor.submit(process_image, image_path, output_folder, process_type) for image_path in image_paths]
+        for future in as_completed(futures):
+            future.result()  # 确保捕获异常
 
 
 def record_allocation(record_file, allocation):
@@ -88,6 +91,7 @@ def read_allocation(record_file):
                 allocation[path] = int(group)
     return allocation
 
+
 def AddHaz_loop(img_f, center, size, beta, A):
     (row, col, chs) = img_f.shape  # (H,W,C)
     for j in range(row):
@@ -97,7 +101,7 @@ def AddHaz_loop(img_f, center, size, beta, A):
             img_f[j][l][:] = img_f[j][l][:] * td + A * (1 - td)
     return img_f
 
-# 针对高分辨率图片调整参数
+
 def AddHaz_loop_largeimg(img_f, center, size, beta, A):
     beta = 0.01 * random.randint(0, 4) + 0.04
     print('fog beta=', beta)
@@ -108,12 +112,15 @@ def AddHaz_loop_largeimg(img_f, center, size, beta, A):
             td = math.exp(-beta * d)
             img_f[j][l][:] = img_f[j][l][:] * td + A * (1 - td)
     return img_f
+
+
 def Dark_loop(img_f, r):
     (row, col, chs) = img_f.shape  # (H,W,C)
     for j in range(row):  # 遍历每一行
         for l in range(col):  # 遍历每一列
             img_f[j][l][:] = img_f[j][l][:] ** r
     return img_f
+
 
 def get_noise(img, value=10):
     noise = np.random.uniform(0, 256, img.shape[0:2])
@@ -149,17 +156,15 @@ def alpha_rain(rain, img, beta=0.8):
     rain_result[:, :, 2] = rain_result[:, :, 2] * (255 - rain[:, :, 0]) / 255 + beta * rain[:, :, 0]
     return rain_result
 
+
 def main():
     original_images_folder = r'/root/dataset/for31/yolo/images/train'  # 原始图片所在的文件夹
-    new_dataset_folder = r'D:\dataset\mypest-test\images\train'  # 新的数据集存放位置
-    allocation_record = './for31_mypest_test_train_record.csv'  # 分配记录文件路径
+    new_dataset_folder = r'/root/dataset/for31-weather-new/images/train'  # 新的数据集存放位置
+    allocation_record = './forest31_train_process_record.csv'  # 分配记录文件路径
 
-    # 获取所有图片文件的路径`
+    # 获取所有图片文件的路径
     image_paths = [os.path.join(original_images_folder, f) for f in os.listdir(original_images_folder) if
                    f.endswith('.jpg')]
-    # 取前500个图片
-    image_paths = image_paths[:500]
-
 
     # 读取分配记录或重新分配
     allocation = read_allocation(allocation_record)
@@ -168,14 +173,13 @@ def main():
         random.shuffle(image_paths)
 
         # 分成5部分
-        lenth = len(image_paths)
+        length = len(image_paths)
 
-        # 分割比例 0.16:0.21：0.21:0.21:0.21
-        p1 = int(lenth*0.16)
-        p2 = int(lenth*0.37)
-        p3 = int(lenth*0.58)
-        p4 = int(lenth*0.79)
-
+        # 分割比例 0.16:0.21:0.21:0.21:0.21
+        p1 = int(length * 0.16)
+        p2 = int(length * 0.37)
+        p3 = int(length * 0.58)
+        p4 = int(length * 0.79)
 
         parts = [
             image_paths[:p1],
@@ -193,20 +197,18 @@ def main():
         # 记录分配
         record_allocation(allocation_record, allocation)
 
-    # 对每部分图片进行处理
+    # 对每部分图片进行并行处理
     count = 0
     process_types = ['origin', 'rain', 'fog', 'dark', 'noise']
+    os.makedirs(new_dataset_folder, exist_ok=True)
+
     for i in range(5):
-        os.makedirs(new_dataset_folder, exist_ok=True)
+        part_image_paths = [image_path for image_path, group in allocation.items() if group == i]
+        print(f"Processing part {i + 1} with {len(part_image_paths)} images. type:{process_types[i]}")
+        process_images_in_parallel(part_image_paths, new_dataset_folder, process_types[i], max_workers=12)
+        count += len(part_image_paths)
 
-        for image_path, group in allocation.items():
-            if group == i:
-                process_image(image_path, new_dataset_folder, process_types[i])
-                count += 1
-                if count %100 == 0:
-                    print("处理进度：",count)
-
-    print(f"处理完成！,共处理{count}张图片")
+    print(f"处理完成！共处理 {count} 张图片")
 
 
 if __name__ == "__main__":

@@ -63,7 +63,8 @@ agnostic_nms: False # (bool) class-agnostic NMS
 classes: # (int | list[int], optional) filter results by class, i.e. classes=0, or classes=[0,2,3]
 retina_masks: False # (bool) use high-resolution segmentation masks
 embed: # (list[int], optional) return feature vectors/embeddings from given layers
-save_dir: /root/dataset/pest-test/v8n-普通图片结果 # 自己设置路径
+#save_dir: /root/dataset/pest-test/v8n-CPA-for31wea-new # 预测时 ，自己设置路径
+save_dir: D:\dataset\pest-test/v8nCPA-for31wea-mohu
 
 # Visualize settings ---------------------------------------------------------------------------------------------------
 show: False # (bool) show predicted images and videos if environment allows
