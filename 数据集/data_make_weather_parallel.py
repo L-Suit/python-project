@@ -20,19 +20,19 @@ def process_image(image_path, output_folder, process_type):
     if process_type == 'origin':                    # 保持原始图片
         img_processed = image
     elif process_type == 'rain':                    # 雨天效果
-        # 降低亮度对比度
-        image = cv2.convertScaleAbs(image, alpha=0.7, beta=-10)
-        noise = get_noise(image, value=500)
-        rain = rain_blur(noise, length=50, angle=-25, w=3)
+        noise = get_noise(image, value=400)
+        rain = rain_blur(noise, length=15, angle=-25, w=3)
         rain_result = alpha_rain(rain, image, beta=0.6)
 
         img_processed = rain_result / 255
         img_processed = np.clip(img_processed * 255, 0, 255)
         img_processed = img_processed.astype(np.uint8)
     elif process_type == 'fog':                    # 雾天效果
+        row, col= image.shape[:2]
+
         i = random.randint(0, 9)
         img_processed = image / 255
-        (row, col, chs) = image.shape
+
         A = 0.5
 
         beta = 0.01 * i + 0.05
@@ -46,7 +46,7 @@ def process_image(image_path, output_folder, process_type):
         img_processed = img_processed.astype(np.uint8)
     elif process_type == 'dark':                      # 低光效果
         # 降低亮度
-        dark_factor = random.uniform(0.75, 0.85)
+        dark_factor = random.uniform(0.80, 0.90)
         image = cv2.convertScaleAbs(image, alpha=dark_factor, beta=0)
         img_processed = image / 255  # 归一化
 
@@ -57,7 +57,7 @@ def process_image(image_path, output_folder, process_type):
         img_processed = img_processed.astype(np.uint8)
     elif process_type == 'fuzzy':  # 添加模糊效果
         # 应用高斯模糊效果
-        img_processed = cv2.GaussianBlur(image, (9, 9), 0)  # (15, 15) 是卷积核的大小，可以调整
+        img_processed = cv2.GaussianBlur(image, (7, 7), 0)  # (15, 15) 是卷积核的大小，可以调整
 
     # 构建输出路径
     output_path = os.path.join(output_folder, os.path.basename(image_path))
@@ -155,9 +155,9 @@ def alpha_rain(rain, img, beta=0.8):
 
 def main():
 
-    original_images_folder = r'D:\dataset\forest-31-pests\val2017'  # 原始图片所在的文件夹
-    new_dataset_folder = r'D:\dataset\mypest-test\images\val'  # 新的数据集存放位置
-    allocation_record = './for31_mypest_test_val_record.csv'  # 分配记录文件路径
+    original_images_folder = r'D:\dataset\forest-31-pests\yolo\images\train'  # 原始图片所在的文件夹
+    new_dataset_folder = r'D:\dataset\for31-weatherv2\images\train'  # 新的数据集存放位置
+    allocation_record = './for31_weav2_train_record.csv'  # 分配记录文件路径
 
     # 获取所有图片文件的路径
     image_paths = [os.path.join(original_images_folder, f) for f in os.listdir(original_images_folder) if

@@ -1,15 +1,17 @@
-import cv2
-
-image_path = 'D:\dataset/forest-31-pests/train2017/1.jpg'
+from PIL import Image
 
 
-image = cv2.imread(image_path)
-if image is None:
-    print('Error: Image not found or unable to read')
+# 示例用法
+input_image_path = r'D:\Pycharm_project\python-project\data\img\2(27).jpg'
+out_image_path = r'D:\Pycharm_project\python-project\data\img\re1.jpg'
+# 打开图像
+pil_image = Image.open(input_image_path)
 
-cv2.imshow('image', image)
-# 等比例缩放图片到480*480像素
-resized_image = cv2.resize(image, (480, 480))
-cv2.imshow('resized_image', resized_image)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+# 定义最大尺寸
+max_size = (900, 900)
+
+# 使用thumbnail保持宽高比
+pil_image.thumbnail(max_size)
+
+
+pil_image.save(out_image_path)

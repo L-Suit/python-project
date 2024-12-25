@@ -12,8 +12,8 @@ if __name__ == '__main__':
     imgsz = 544
     epoch = 200
     batch = 16
-    optimizer = 'AdamW'
-    lr0 = 0.001
+    optimizer = 'SGD'
+    lr0 = 0.01
     patience = 15
     weight_decay = 0.0005
     workers = 6
@@ -26,7 +26,7 @@ if __name__ == '__main__':
                 lr0=lr0,
                 batch=batch,
                 optimizer=optimizer,  # 优化器设置
-                workers = workers,
+                workers=workers,
                 patience=patience,
                 #dropout=dropout,
                 weight_decay=weight_decay,
@@ -41,5 +41,5 @@ if __name__ == '__main__':
                 amp=True,  # 如果出现训练损失为Nan可以关闭amp
                 # half=True,
                 project='runs/detect',
-                name=f'yolov8n_for31-weather_epo{epoch}_lr{lr0}_{batch}_{optimizer}_wk{workers}_wd{weight_decay}_sz{imgsz}_mosaic0_',
+                name=f'yolov8n_for31v2_epo{epoch}_lr{lr0}_{batch}_{optimizer}_wk{workers}_wd{weight_decay}_sz{imgsz}_',
                 )
