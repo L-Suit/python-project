@@ -73,8 +73,10 @@ def on_pretrain_routine_start(trainer):
     if SummaryWriter:
         try:
             global WRITER
-            WRITER = SummaryWriter(str(trainer.save_dir))
-            LOGGER.info(f"{PREFIX}Start with 'tensorboard --logdir {trainer.save_dir}', view at http://localhost:6006/")
+            #WRITER = SummaryWriter(str(trainer.save_dir))
+            WRITER = SummaryWriter(f'/root/tf-logs')
+            #LOGGER.info(f"{PREFIX}Start with 'tensorboard --logdir {trainer.save_dir}', view at http://localhost:6006/")
+            LOGGER.info(f"{PREFIX}Start with 'tensorboard --logdir /root/tf-logs', view at http://localhost:6006/")
         except Exception as e:
             LOGGER.warning(f"{PREFIX}WARNING ⚠️ TensorBoard not initialized correctly, not logging this run. {e}")
 

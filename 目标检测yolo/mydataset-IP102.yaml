@@ -6,15 +6,21 @@
 
 # Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
 ##### 主机数据集目录 #######
-#path: D:\dataset\demo_data # dataset root dir
+#path: D:\dataset\ip102_weather # dataset root dir
 #train: trainval.txt # train images (relative to 'path') 4 images
 #val: test.txt # val images (relative to 'path') 4 images
 
 ###### 服务器数据集目录 ######
-path: C:\ProgramData\lsh-dataset/ip102/images
-train: train # train images (relative to 'path') 4 images
-val: val # val images (relative to 'path') 4 images
-test: # test images (optional)
+#path: C:\ProgramData\lsh-dataset/ip102/images
+#train: train # train images (relative to 'path') 4 images
+#val: val # val images (relative to 'path') 4 images
+#test: # test images (optional)
+
+
+###### Autodl平台数据集目录 ######
+path: /root/autodl-tmp/ip102
+train: trainval.txt # train images (relative to 'path') 4 images
+val: test.txt # val images (relative to 'path') 4 images
 
 # Classes
 names:

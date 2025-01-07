@@ -24,9 +24,11 @@ def process_image(image_path, output_folder, process_type):
     if process_type == 'origin':                    # 保持原始图片
         img_processed = image
     elif process_type == 'rain':                    # 雨天效果
+        # 降低亮度对比度
+        image = cv2.convertScaleAbs(image, alpha=0.7, beta=-10)
         # value = random.randint(300, 600)
         noise = get_noise(image, value=500)
-        rain = rain_blur(noise, length=50, angle=-30, w=3)
+        rain = rain_blur(noise, length=50, angle=-25, w=3)
         rain_result = alpha_rain(rain, image, beta=0.6)
 
         img_processed = rain_result / 255
@@ -49,13 +51,18 @@ def process_image(image_path, output_folder, process_type):
         img_processed = img_processed.astype(np.uint8)
     elif process_type == 'dark':                      # 低光效果
         # 降低亮度
-        dark_factor = random.uniform(0.7, 0.8)
+        dark_factor = random.uniform(0.75, 0.85)
         image = cv2.convertScaleAbs(image, alpha=dark_factor, beta=0)
         img_processed = image / 255  # 归一化
+
+        # 伽马变换
         r=random.uniform(1.5,5)
         dark_image=Dark_loop(img_processed,r)
         img_processed=np.clip(dark_image*255, 0, 255) # 限制范围在(0,255)内
         img_processed = img_processed.astype(np.uint8)
+    elif process_type == 'fuzzy':                   # 添加模糊效果
+        # 应用高斯模糊效果
+        img_processed = cv2.GaussianBlur(image, (9, 9), 0)  # (15, 15) 是卷积核的大小，可以调整
 
     # 构建输出路径
     output_path = os.path.join(output_folder, os.path.basename(image_path))
@@ -139,11 +146,11 @@ def alpha_rain(rain, img, beta=0.8):
     return rain_result
 
 def main():
-    original_images_folder = r'C:\ProgramData\lsh-dataset\forest-31-pests\yolo\images\train'  # 原始图片所在的文件夹
-    new_dataset_folder = r'C:\ProgramData\lsh-dataset\forest-31pests-weather\images\train'  # 新的数据集存放位置
-    allocation_record = './forest31_process_record.csv'  # 分配记录文件路径
+    original_images_folder = r'D:\dataset\forest-31-pests\train2017'  # 原始图片所在的文件夹
+    new_dataset_folder = r'D:\dataset\mypest-test\images\train'  # 新的数据集存放位置
+    allocation_record = './for31_mypest_test_train_record.csv'  # 分配记录文件路径
 
-    # 获取所有图片文件的路径
+    # 获取所有图片文件的路径`
     image_paths = [os.path.join(original_images_folder, f) for f in os.listdir(original_images_folder) if
                    f.endswith('.jpg')]
 
@@ -153,13 +160,22 @@ def main():
         # 随机打乱图片路径列表
         random.shuffle(image_paths)
 
-        # 平均分成四部分
-        split_size = len(image_paths) // 4
+        # 分成5部分
+        lenth = len(image_paths)
+
+        # 分割比例 0.16:0.21：0.21:0.21:0.21
+        p1 = int(lenth*0.16)
+        p2 = int(lenth*0.37)
+        p3 = int(lenth*0.58)
+        p4 = int(lenth*0.79)
+
+
         parts = [
-            image_paths[:split_size],
-            image_paths[split_size:2 * split_size],
-            image_paths[2 * split_size:3 * split_size],
-            image_paths[3 * split_size:]
+            image_paths[:p1],
+            image_paths[p1:p2],
+            image_paths[p2:p3],
+            image_paths[p3:p4],
+            image_paths[p4:]
         ]
 
         # 记录分配情况
@@ -172,8 +188,8 @@ def main():
 
     # 对每部分图片进行处理
     count = 0
-    process_types = ['origin', 'rain', 'fog', 'dark']
-    for i in range(4):
+    process_types = ['origin', 'rain', 'fog', 'dark', 'fuzzy']
+    for i in range(5):
         os.makedirs(new_dataset_folder, exist_ok=True)
 
         for image_path, group in allocation.items():
