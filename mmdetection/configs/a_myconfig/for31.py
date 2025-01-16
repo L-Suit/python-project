@@ -1,6 +1,6 @@
 
 # dataset settings
-dataset_type = 'For31Dataset'
+dataset_type = 'CocoDataset'
 data_root = '/root/dataset/for31-weatherv2/images'
 
 # Example to use different file client
