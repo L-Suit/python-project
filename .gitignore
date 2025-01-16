@@ -7,6 +7,7 @@ cam_result/
 低照度增强/Zero-DCE/pretrained_model/*.pth
 目标检测/results/
 数据集/*.csv
+work_dirs/
 
 
 # 配置文件
