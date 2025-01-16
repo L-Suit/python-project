@@ -8,9 +8,8 @@ from ultralytics.utils import DEFAULT_CFG
 
 if __name__ == '__main__':
 
-    model = YOLO(r'./cfg/models/v8/yolov8-weather-ADown.yaml')
-    #model = YOLO(r'/root/python-project/目标检测yolo/runs/detect/'
-    #             r'yolov8n-CPA_for31v2_epo200_lr0.01_16_SGD_wk6_wd0.0005_sz544_/weights/last.pt')
+    #model = YOLO(r'./cfg/models/v8/yolov8-weather-ADown.yaml')
+    model = YOLO(r'/root/python-project/目标检测yolo/runs/detect/yolov8n-ADown_for31v2_epo200_lr0.001_16_AdamW_wk6_wd0.0005_sz544_/weights/last.pt')
     imgsz = 544
     epoch = 200
     batch = 16

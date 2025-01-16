@@ -1,4 +1,8 @@
 from ultralytics import YOLO
+import requests
+import itertools
+import string
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 if __name__ == "__main__":
     #model_path = r"/root/python-project/目标检测yolo/runs/detect/yolov8n_for31weather-new_epo200_lr0.001_16_AdamW_wk6_wd0.0005_sz544_mosaic0_/weights/last.pt"
