@@ -63,6 +63,7 @@ def parse_args():
 
 
 def main():
+    print(1111)
     args = parse_args()
 
     # 配置文件路径
