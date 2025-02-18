@@ -14,8 +14,8 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Train a detector')
 
     # 配置文件路径
-    parser.add_argument('config',
-                        default='mmdetection/configs/faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py',
+    parser.add_argument('--config',
+                        default='/root/python-project/mmdetection/configs/faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py',
                         help='train config file path')
 
     parser.add_argument('--work-dir', help='the dir to save logs and models')
@@ -63,7 +63,6 @@ def parse_args():
 
 
 def main():
-    print(1111)
     args = parse_args()
 
     # 配置文件路径
