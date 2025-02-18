@@ -6,21 +6,23 @@ test_cfg = dict(type='TestLoop')
 # learning rate
 param_scheduler = [
     dict(
-        type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500),
-    dict(
-        type='MultiStepLR',
-        begin=0,
-        end=12,
+        # 具体参数意义见 https://mmengine.readthedocs.io/zh-cn/latest/api/generated/mmengine.optim.OneCycleLR.html#mmengine.optim.OneCycleLR
+        type='OneCycleLR',
+        eta_max=0.001,
+        total_steps='200',
+        pct_start = '0.015',    #200轮中多少比例是先增加学习率的
         by_epoch=True,
-        milestones=[8, 11],
-        gamma=0.1)
-    # 待修改，调整学习率策略
+        div_factor =10,
+        final_div_factor=10,
+        verbose=True
+    )
+
 ]
 
 # optimizer
 optim_wrapper = dict(
     type='AmpOptimWrapper',
-    optimizer=dict(type='AdamW', lr=0.001, momentum=0.937, weight_decay=0.0005))
+    optimizer=dict(type='AdamW', lr=0.001, weight_decay=0.0005))
 
 # Default setting for scaling LR automatically
 #   - `enable` means enable scaling LR automatically
