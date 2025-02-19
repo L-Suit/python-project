@@ -18,7 +18,9 @@ def parse_args():
                         default='/root/python-project/mmdetection/configs/faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py',
                         help='train config file path')
 
-    parser.add_argument('--work-dir', help='the dir to save logs and models')
+    parser.add_argument('--work-dir',
+                        default='/root/autodl-tmp/mmdec/faster_rcnn',
+                        help='the dir to save logs and models')
     parser.add_argument(
         '--amp',
         action='store_true',

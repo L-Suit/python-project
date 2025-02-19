@@ -9,8 +9,8 @@ param_scheduler = [
         # 具体参数意义见 https://mmengine.readthedocs.io/zh-cn/latest/api/generated/mmengine.optim.OneCycleLR.html#mmengine.optim.OneCycleLR
         type='OneCycleLR',
         eta_max=0.001,
-        total_steps='200',
-        pct_start = '0.015',    #200轮中多少比例是先增加学习率的
+        total_steps=200,
+        pct_start = 0.015,    #200轮中多少比例是先增加学习率的
         by_epoch=True,
         div_factor =10,
         final_div_factor=10,
