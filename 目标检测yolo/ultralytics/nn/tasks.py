@@ -926,7 +926,7 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
 
             args = [c1, c2, *args[1:]]
             if m in {BottleneckCSP, C1, C2, C2f, C2fAttn, C3, C3TR, C3Ghost, C3x, RepC3, C2fCIB,
-                     C2f_FasterBlock,C2f_SENetV2,C2fMLLABlock}:
+                     C2f_FasterBlock,C2f_SENetV2,C2fMLLABlock,C2f_GhostModule_DynamicConv}:
                 args.insert(2, n)  # number of repeats
                 n = 1
         elif m in {AIFI,SELayerV2}:

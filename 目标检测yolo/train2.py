@@ -7,16 +7,16 @@ from ultralytics.utils import DEFAULT_CFG
 
 
 if __name__ == '__main__':
-    model = YOLO(r'./cfg/models/v8/yolov8n.yaml')
+    model = YOLO(r'./cfg/models/v8/yolov8-weather-GhostModule.yaml')
     # model.load('yolov8n.pt') # loading pretrain weights
     imgsz = 544
     epoch = 200
     batch = 16
-    optimizer = 'SGD'
-    lr0 = 0.01
+    optimizer = 'AdamW'
+    lr0 = 0.001
     patience = 15
     weight_decay = 0.0005
-    workers = 6
+    workers = 4
 
 
     model.train(data=r'mydataset-for31.yaml',
@@ -41,5 +41,5 @@ if __name__ == '__main__':
                 amp=True,  # 如果出现训练损失为Nan可以关闭amp
                 # half=True,
                 project='runs/detect',
-                name=f'yolov8n_for31v2_epo{epoch}_lr{lr0}_{batch}_{optimizer}_wk{workers}_wd{weight_decay}_sz{imgsz}_',
+                name=f'yolov8n-GhostModule_for31v2_epo{epoch}_lr{lr0}_{batch}_{optimizer}_wk{workers}_wd{weight_decay}_sz{imgsz}_',
                 )

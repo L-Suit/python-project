@@ -1,5 +1,4 @@
-from ultralytics import YOLO
-
+from ultralytics import YOLO, RTDETR
 
 from ultralytics.models.yolo.detect import DetectionTrainer
 from ultralytics.utils import DEFAULT_CFG
@@ -8,9 +7,9 @@ from ultralytics.utils import DEFAULT_CFG
 
 if __name__ == '__main__':
 
-    model = YOLO(r'./cfg/models/v8/yolov8-weather-ADown.yaml')
-    #model = YOLO(r'/root/python-project/目标检测yolo/runs/detect/'
-    #             r'yolov8n-CPA_for31v2_epo200_lr0.01_16_SGD_wk6_wd0.0005_sz544_/weights/last.pt')
+    #model = YOLO(r'./cfg/models/v8/yolov8-weather-ADown.yaml')
+    #model = YOLO(r'/root/python-project/目标检测yolo/runs/detect/yolov8n-ADown_for31v2_epo200_lr0.001_16_AdamW_wk6_wd0.0005_sz544_/weights/last.pt')
+    model = RTDETR(r'./cfg/models/rt-detr/rtdetr-resnet18.yaml')
     imgsz = 544
     epoch = 200
     batch = 16
@@ -43,5 +42,5 @@ if __name__ == '__main__':
                 amp=True,  # 如果出现训练损失为Nan可以关闭amp
                 # half=True,
                 project='runs/detect',
-                name=f'yolov8n-ADown_for31v2_epo{epoch}_lr{lr0}_{batch}_{optimizer}_wk{workers}_wd{weight_decay}_sz{imgsz}_',
+                name=f'rtdetr-r18_for31v2_epo{epoch}_lr{lr0}_{batch}_{optimizer}_wk{workers}_wd{weight_decay}_sz{imgsz}_',
                 )
