@@ -13,13 +13,19 @@ from mmdet.utils import setup_cache_size_limit_of_dynamo
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a detector')
 
+    #config_file = '/root/python-project/mmdetection/configs/rtmdet/rtmdet_s_8xb32-300e_coco.py'
+    config_file = 'E:/lsh/python-project/mmdetection/configs/dynamic_rcnn/dynamic-rcnn_r50_fpn_1x_coco.py'
+
+    #save_dir = '/root/autodl-tmp/mmdec/rtmdet_s'
+    save_dir = 'E:/lsh/python-project/mmdetection/result/dynamic-rcnn_r50'
+
     # 配置文件路径
     parser.add_argument('--config',
-                        default=r'/root/python-project/mmdetection/configs/rtmdet/rtmdet_s_8xb32-300e_coco.py',
+                        default=config_file,
                         help='train config file path')
 
     parser.add_argument('--work-dir',
-                        default='/root/autodl-tmp/mmdec/rtmdet_s',
+                        default=save_dir,
                         help='the dir to save logs and models')
     parser.add_argument(
         '--amp',
