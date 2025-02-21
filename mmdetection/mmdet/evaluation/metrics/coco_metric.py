@@ -240,6 +240,9 @@ class CocoMetric(BaseMetric):
                 data['image_id'] = image_id
                 data['bbox'] = self.xyxy2xywh(bboxes[i])
                 data['score'] = float(scores[i])
+                if label >= len(self.cat_ids):
+                    print(f"Label {label} is out of range. Max allowed label is {len(self.cat_ids) - 1}")
+                    raise ValueError(f"Label {label} is out of range. Max allowed label is {len(self.cat_ids) - 1}")
                 data['category_id'] = self.cat_ids[label]
                 bbox_json_results.append(data)
 

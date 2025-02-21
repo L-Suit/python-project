@@ -1,13 +1,34 @@
 _base_ = './rtmdet_l_8xb32-300e_coco.py'
 checkpoint = 'https://download.openmmlab.com/mmdetection/v3.0/rtmdet/cspnext_rsb_pretrain/cspnext-s_imagenet_600e.pth'  # noqa
+
+# training schedule for 1x
+train_cfg = dict(type='EpochBasedTrainLoop', max_epochs=200, val_interval=1)
+val_cfg = dict(type='ValLoop')
+test_cfg = dict(type='TestLoop')
+
+# learning rate
+param_scheduler = [
+    dict(type='CosineAnnealingLR',
+         T_max=200,
+         by_epoch=True,
+         begin=0,
+         end=200)
+]
+
+# optimizer
+optim_wrapper = dict(
+    type='AmpOptimWrapper',
+    optimizer=dict(type='SGD', lr=0.01, weight_decay=0.0005))
+
+auto_scale_lr = dict(enable=False, base_batch_size=16)
+
+
 model = dict(
     backbone=dict(
         deepen_factor=0.33,
-        widen_factor=0.5,
-        init_cfg=dict(
-            type='Pretrained', prefix='backbone.', checkpoint=checkpoint)),
+        widen_factor=0.5),
     neck=dict(in_channels=[128, 256, 512], out_channels=128, num_csp_blocks=1),
-    bbox_head=dict(in_channels=128, feat_channels=128, exp_on_reg=False))
+    bbox_head=dict(in_channels=128, feat_channels=128, exp_on_reg=False,num_classes=31))
 
 train_pipeline = [
     dict(type='LoadImageFromFile', backend_args={{_base_.backend_args}}),
@@ -46,7 +67,10 @@ train_pipeline_stage2 = [
     dict(type='PackDetInputs')
 ]
 
-train_dataloader = dict(dataset=dict(pipeline=train_pipeline))
+train_dataloader = dict(
+    batch_size=16,
+    num_workers=10,
+    dataset=dict(pipeline=train_pipeline))
 
 custom_hooks = [
     dict(
