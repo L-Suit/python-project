@@ -71,6 +71,7 @@ def imagenet_vid_classes() -> list:
 
 def coco_classes() -> list:
     """Class names of COCO."""
+    print('###coco_classes调用，返回31类')
     return [
         'Drosicha_contrahens_female', 'Drosicha_contrahens_male', 'Chalcophora_japonica',
          'Anoplophora_chinensis', 'Psacothea_hilaris(Pascoe)', 'Apriona_germari(Hope)',
