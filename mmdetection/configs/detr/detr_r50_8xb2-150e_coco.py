@@ -65,7 +65,7 @@ model = dict(
     positional_encoding=dict(num_feats=128, normalize=True),
     bbox_head=dict(
         type='DETRHead',
-        num_classes=80,
+        num_classes=31,
         embed_dims=256,
         loss_cls=dict(
             type='CrossEntropyLoss',

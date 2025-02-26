@@ -15,11 +15,11 @@ def parse_args():
 
     # 配置文件路径
     parser.add_argument('--config',
-                        default=r'/root/python-project/mmdetection/configs/rtmdet/rtmdet_s_8xb32-300e_coco.py',
+                        default=r'/root/python-project/mmdetection/configs/faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py',
                         help='train config file path')
 
     parser.add_argument('--work-dir',
-                        default='/root/autodl-tmp/mmdec/rtmdet_s',
+                        default='/root/autodl-tmp/mmdec/faster-rcnn',
                         help='the dir to save logs and models')
     parser.add_argument(
         '--amp',

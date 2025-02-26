@@ -43,7 +43,7 @@ test_pipeline = [
 ]
 train_dataloader = dict(
     batch_size=16,
-    num_workers=4,
+    num_workers=8,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=True),
     batch_sampler=dict(type='AspectRatioBatchSampler'),

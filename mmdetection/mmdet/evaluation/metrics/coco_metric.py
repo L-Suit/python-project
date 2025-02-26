@@ -419,6 +419,7 @@ class CocoMetric(BaseMetric):
         if self.cat_ids is None:
             self.cat_ids = self._coco_api.get_cat_ids(
                 cat_names=self.dataset_meta['classes'])
+            print('cat_ids:',self.cat_ids)
         if self.img_ids is None:
             self.img_ids = self._coco_api.get_img_ids()
 
