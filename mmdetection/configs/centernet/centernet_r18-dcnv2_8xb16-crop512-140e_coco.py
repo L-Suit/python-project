@@ -5,7 +5,7 @@ _base_ = [
 ]
 
 dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+data_root = '/root/dataset/for31-weatherv2/images'
 
 # model settings
 model = dict(
@@ -85,24 +85,6 @@ test_pipeline = [
 ]
 
 # Use RepeatDataset to speed up training
-train_dataloader = dict(
-    batch_size=16,
-    num_workers=4,
-    persistent_workers=True,
-    sampler=dict(type='DefaultSampler', shuffle=True),
-    dataset=dict(
-        _delete_=True,
-        type='RepeatDataset',
-        times=5,
-        dataset=dict(
-            type=dataset_type,
-            data_root=data_root,
-            ann_file='annotations/instances_train2017.json',
-            data_prefix=dict(img='train2017/'),
-            filter_cfg=dict(filter_empty_gt=True, min_size=32),
-            pipeline=train_pipeline,
-            backend_args={{_base_.backend_args}},
-        )))
 
 val_dataloader = dict(dataset=dict(pipeline=test_pipeline))
 test_dataloader = val_dataloader
