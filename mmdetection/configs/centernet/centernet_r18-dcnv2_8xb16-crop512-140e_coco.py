@@ -20,7 +20,7 @@ model = dict(
         depth=18,
         norm_eval=False,
         norm_cfg=dict(type='BN'),
-        init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet18')),
+        ),
     neck=dict(
         type='CTResNetNeck',
         in_channels=512,

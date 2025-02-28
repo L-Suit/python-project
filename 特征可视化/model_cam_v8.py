@@ -364,10 +364,10 @@ class yolo_heatmap:
 
 def get_params():
     params = {
-        'weight': r'/root/autodl-tmp/detect/yolov10n_for31weatherV2_epo200_lr0.001_16_AdamW_wk6_wd0.0005_sz544_3/weights/last.pt',  # 现在只需要指定权重即可,不需要指定cfg
+        # 现在只需要指定权重即可,不需要指定cfg
+        'weight': r'/root/autodl-tmp/detect/yolov10n_for31weatherV2_epo200_lr0.001_16_AdamW_wk6_wd0.0005_sz544_3/weights/last.pt',
         'device': 'cuda:0',
-        'method': 'GradCAM',
-        # GradCAMPlusPlus, GradCAM, XGradCAM, EigenCAM, HiResCAM, LayerCAM, RandomCAM, EigenGradCAM, KPCA_CAM
+        'method': 'GradCAM', # GradCAMPlusPlus, GradCAM, XGradCAM, EigenCAM, HiResCAM, LayerCAM, RandomCAM, EigenGradCAM, KPCA_CAM
         'layer': [9],# 9效果好点
         'backward_type': 'all', #还支持score和box。建议使用all，效果不佳再换
         # detect:<class, box, all> segment:<class, box, segment, all> pose:<box, keypoint, all> obb:<box, angle, all> classify:<all>
@@ -383,6 +383,9 @@ def get_params():
 
 # pip install grad-cam==1.5.4 --no-deps
 if __name__ == '__main__':
+    img_path = r'/root/dataset/for31-weatherv2/images/train/2(2).jpg'
+    save_path = 'cam_result'
+
     model = yolo_heatmap(**get_params())
-    model(r'/root/dataset/for31-weatherv2/images/train/2(2).jpg', 'cam_result')
+    model(img_path, save_path)
     # model(r'/home/hjj/Desktop/dataset/dataset_coco/coco/images/val2017', 'result')

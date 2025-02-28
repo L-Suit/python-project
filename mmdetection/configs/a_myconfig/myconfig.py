@@ -35,7 +35,7 @@ param_scheduler = [
 # optimizer
 optim_wrapper = dict(
     type='AmpOptimWrapper',
-    optimizer=dict(type='SGD', lr=0.01, weight_decay=0.0005))
+    optimizer=dict(type='AdamW', lr=0.001, weight_decay=0.0005))
 
 auto_scale_lr = dict(enable=False, base_batch_size=16)
 
