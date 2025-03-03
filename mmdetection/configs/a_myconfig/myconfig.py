@@ -1,5 +1,5 @@
 _base_ = [
-    '../centernet/centernet_r18-dcnv2_8xb16-crop512-140e_coco.py'
+    '../dynamic_rcnn/dynamic-rcnn_r50_fpn_1x_coco.py'
 ]
 
 
@@ -10,7 +10,8 @@ data_root = '/root/dataset/for31-weatherv2/images'
 backend_args = None
 
 model = dict(
-    bbox_head=dict(num_classes=31))
+    roi_head=dict(
+        bbox_head=dict(num_classes=31)))
 
 # training schedule for 1x
 train_cfg = dict(type='EpochBasedTrainLoop', max_epochs=200, val_interval=1)
@@ -19,8 +20,8 @@ test_cfg = dict(type='TestLoop')
 
 # batch size, num workers
 train_dataloader = dict(
-    batch_size=32,
-    num_workers=8)
+    batch_size=16,
+    num_workers=2)
 
 
 # learning rate
@@ -35,7 +36,7 @@ param_scheduler = [
 # optimizer
 optim_wrapper = dict(
     type='AmpOptimWrapper',
-    optimizer=dict(type='SGD', lr=0.01, weight_decay=0.0005))
+    optimizer=dict(type='AdamW', lr=0.001, weight_decay=0.0005))
 
 auto_scale_lr = dict(enable=False, base_batch_size=16)
 
