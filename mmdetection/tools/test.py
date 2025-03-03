@@ -19,13 +19,15 @@ from mmdet.utils import setup_cache_size_limit_of_dynamo
 def parse_args():
     parser = argparse.ArgumentParser(
         description='MMDet test (and eval) a model')
-    parser.add_argument('config', help='test config file path')
-    parser.add_argument('checkpoint', help='checkpoint file')
+    parser.add_argument('--config',default='E:/lsh/python-project/mmdetection/configs/faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py', help='test config file path')
+    parser.add_argument('--checkpoint',default='E:/lsh/mmdec/faster-rcnn/epoch_200.pth', help='checkpoint file')
     parser.add_argument(
         '--work-dir',
+        default='E:/lsh/mmdec模型测试结果/faster-rcnn',
         help='the directory to save the file containing evaluation metrics')
     parser.add_argument(
         '--out',
+        default='E:/lsh/mmdec模型测试结果/faster-rcnn/result1.pkl',
         type=str,
         help='dump predictions to a pickle file for offline evaluation')
     parser.add_argument(

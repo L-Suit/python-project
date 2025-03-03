@@ -14,8 +14,8 @@ from mmdet.utils.benchmark import (DataLoaderBenchmark, DatasetBenchmark,
 
 def parse_args():
     parser = argparse.ArgumentParser(description='MMDet benchmark')
-    parser.add_argument('config', help='test config file path')
-    parser.add_argument('--checkpoint', help='checkpoint file')
+    parser.add_argument('--config', default='E:/lsh/python-project/mmdetection/configs/faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py',help='test config file path')
+    parser.add_argument('--checkpoint', default='E:/lsh/mmdec/faster-rcnn/epoch_200.pth',help='checkpoint file')
     parser.add_argument(
         '--task',
         choices=['inference', 'dataloader', 'dataset'],
@@ -59,7 +59,7 @@ def parse_args():
     parser.add_argument(
         '--launcher',
         choices=['none', 'pytorch', 'slurm', 'mpi'],
-        default='none',
+        default='pytorch',
         help='job launcher')
     parser.add_argument('--local_rank', type=int, default=0)
     args = parser.parse_args()

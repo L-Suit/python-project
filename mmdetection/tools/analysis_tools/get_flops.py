@@ -24,7 +24,7 @@ except ImportError:
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Get a detector flops')
-    parser.add_argument('config', help='train config file path')
+    parser.add_argument('--config',default='E:/lsh/python-project/mmdetection/configs/faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py', help='train config file path')
     parser.add_argument(
         '--num-images',
         type=int,

@@ -18,11 +18,11 @@ from mmdet.utils import replace_cfg_vals, update_data_root
 def parse_args():
     parser = argparse.ArgumentParser(
         description='Generate confusion matrix from detection results')
-    parser.add_argument('config', help='test config file path')
+    parser.add_argument('--config',default='E:/lsh/python-project/mmdetection/configs/faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py', help='test config file path')
     parser.add_argument(
-        'prediction_path', help='prediction path where test .pkl result')
+        '--prediction_path', default='E:/lsh/mmdec模型测试结果/faster-rcnn/result1.pkl',help='prediction path where test .pkl result')
     parser.add_argument(
-        'save_dir', help='directory where confusion matrix will be saved')
+        '--save_dir',default='E:/lsh/mmdec模型测试结果/faster-rcnn', help='directory where confusion matrix will be saved')
     parser.add_argument(
         '--show', action='store_true', help='show confusion matrix')
     parser.add_argument(
@@ -267,6 +267,26 @@ def main():
         save_dir=args.save_dir,
         show=args.show,
         color_theme=args.color_theme)
+
+    TP = np.diag(confusion_matrix)
+    FP = np.sum(confusion_matrix, axis=0) - TP
+    FN = np.sum(confusion_matrix, axis=1) - TP
+
+    precision = TP / (TP + FP)
+    recall = TP / (TP + FN)
+    average_precision = np.mean(precision)
+    average_recall = np.mean(recall)
+    f1 = 2 * (average_precision * average_recall) / (average_precision + average_recall)
+
+    print('AP:', average_precision)
+    print('AR:', average_recall)
+    print('F1:', f1)
+    print('Precision', precision)
+    print('Recall', recall)
+
+    # print('TP:', TP)
+    # print('FP:', FP)
+    # print('FN', FN)
 
 
 if __name__ == '__main__':
