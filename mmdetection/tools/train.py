@@ -11,10 +11,10 @@ from mmdet.utils import setup_cache_size_limit_of_dynamo
 
 
 def parse_args():
-    #conf_dir =  '/root/python-project/mmdetection/configs/faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py'
+    #conf_dir =  '/root/python-project/mmdetection/configs/a_myconfig/myconfig.py'
     conf_dir = r'E:/lsh/python-project/mmdetection/configs/a_myconfig/myconfig.py'
 
-    #save_dir = r'root/auto-tmp/mmdec/faster-rcnn'
+    #save_dir = r'/root/autodl-tmp/mmdec/dab-detr'
     save_dir = r'E:/lsh/mmdec/dab-detr'
 
     parser = argparse.ArgumentParser(description='Train a detector')

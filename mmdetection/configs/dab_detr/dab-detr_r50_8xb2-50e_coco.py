@@ -70,7 +70,7 @@ model = dict(
     positional_encoding=dict(num_feats=128, temperature=20, normalize=True),
     bbox_head=dict(
         type='DABDETRHead',
-        num_classes=80,
+        num_classes=31,
         embed_dims=256,
         loss_cls=dict(
             type='FocalLoss',
