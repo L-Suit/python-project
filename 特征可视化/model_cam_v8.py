@@ -359,22 +359,22 @@ class yolo_heatmap:
             for img_path_ in os.listdir(img_path):
                 self.process(f'{img_path}/{img_path_}', f'{save_path}/{img_path_}')
         else:
-            self.process(img_path, f'{save_path}/result.png')
+            self.process(img_path, f'{save_path}/result1.png')
 
 
 def get_params():
     params = {
         # 现在只需要指定权重即可,不需要指定cfg
-        'weight': r'/root/autodl-tmp/detect/yolov10n_for31weatherV2_epo200_lr0.001_16_AdamW_wk6_wd0.0005_sz544_3/weights/last.pt',
+        'weight': r'/root/autodl-tmp/detect/yolov8n_for31v2_epo200_lr0.001_16_AdamW_wk6_wd0.0005_sz544_/weights/last.pt',
         'device': 'cuda:0',
         'method': 'GradCAM', # GradCAMPlusPlus, GradCAM, XGradCAM, EigenCAM, HiResCAM, LayerCAM, RandomCAM, EigenGradCAM, KPCA_CAM
         'layer': [9],# 9效果好点
         'backward_type': 'all', #还支持score和box。建议使用all，效果不佳再换
         # detect:<class, box, all> segment:<class, box, segment, all> pose:<box, keypoint, all> obb:<box, angle, all> classify:<all>
         'conf_threshold': 0.6,  # 0.2
-        'ratio': 0.02,  # 0.02-0.1
+        'ratio': 0.03,  # 0.02-0.1
         'show_result': True,  # 不需要绘制结果请设置为False
-        'renormalize': False,  # 需要把热力图限制在框内请设置为True(仅对detect,segment,pose有效)
+        'renormalize': True,  # 需要把热力图限制在框内请设置为True(仅对detect,segment,pose有效)
         'task': 'detect',  # 任务(detect,segment,pose,obb,classify)
         'img_size': 640,  # 图像尺寸
     }
@@ -383,8 +383,8 @@ def get_params():
 
 # pip install grad-cam==1.5.4 --no-deps
 if __name__ == '__main__':
-    img_path = r'/root/dataset/for31-weatherv2/images/train/2(2).jpg'
-    save_path = 'cam_result'
+    img_path = r'/root/dataset/for31-weatherv2/images/val'
+    save_path = '/root/autodl-tmp/heatmap-result'
 
     model = yolo_heatmap(**get_params())
     model(img_path, save_path)

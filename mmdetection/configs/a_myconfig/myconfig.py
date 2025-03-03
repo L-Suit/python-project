@@ -1,11 +1,12 @@
 _base_ = [
-    '../dynamic_rcnn/dynamic-rcnn_r50_fpn_1x_coco.py'
+    '../dab_detr/dab-detr_r50_8xb2-50e_coco.py'
 ]
 
 
 # dataset settings
 dataset_type = 'CocoDataset'
-data_root = '/root/dataset/for31-weatherv2/images'
+#data_root = '/root/dataset/for31-weatherv2/images'
+data_root = 'C:/ProgramData/lsh-dataset/for31-weatherv2/images'
 
 backend_args = None
 
