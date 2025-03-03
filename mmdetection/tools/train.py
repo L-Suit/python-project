@@ -11,15 +11,21 @@ from mmdet.utils import setup_cache_size_limit_of_dynamo
 
 
 def parse_args():
+    conf_dir =  '/root/python-project/mmdetection/configs/a_myconfig/myconfig.py'
+    #conf_dir = r'E:/lsh/python-project/mmdetection/configs/a_myconfig/myconfig.py'
+
+    save_dir = r'root/autodl-tmp/mmdec/faster-rcnn'
+    #save_dir = r'E:/lsh/mmdec/dab-detr'
+
     parser = argparse.ArgumentParser(description='Train a detector')
 
     # 配置文件路径
     parser.add_argument('--config',
-                        default=r'/root/python-project/mmdetection/configs/faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py',
+                        default=conf_dir,
                         help='train config file path')
 
     parser.add_argument('--work-dir',
-                        default='/root/autodl-tmp/mmdec/faster-rcnn',
+                        default=save_dir,
                         help='the dir to save logs and models')
     parser.add_argument(
         '--amp',
