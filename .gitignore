@@ -8,6 +8,7 @@ cam_result/
 目标检测/results/
 数据集/*.csv
 work_dirs/
+mmdetection/result
 
 
 # 配置文件

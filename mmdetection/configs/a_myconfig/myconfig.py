@@ -1,16 +1,18 @@
 _base_ = [
-    '../centernet/centernet_r18-dcnv2_8xb16-crop512-140e_coco.py'
+    '../dab_detr/dab-detr_r50_8xb2-50e_coco.py'
 ]
 
 
 # dataset settings
 dataset_type = 'CocoDataset'
-data_root = '/root/dataset/for31-weatherv2/images'
+#data_root = '/root/dataset/for31-weatherv2/images'
+data_root = 'C:/ProgramData/lsh-dataset/for31-weatherv2/images'
 
 backend_args = None
 
 model = dict(
-    bbox_head=dict(num_classes=31))
+    roi_head=dict(
+        bbox_head=dict(num_classes=31)))
 
 # training schedule for 1x
 train_cfg = dict(type='EpochBasedTrainLoop', max_epochs=200, val_interval=1)
@@ -19,8 +21,8 @@ test_cfg = dict(type='TestLoop')
 
 # batch size, num workers
 train_dataloader = dict(
-    batch_size=32,
-    num_workers=8)
+    batch_size=16,
+    num_workers=2)
 
 
 # learning rate

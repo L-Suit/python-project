@@ -388,4 +388,5 @@ if __name__ == '__main__':
 
     model = yolo_heatmap(**get_params())
     model(img_path, save_path)
+
     # model(r'/home/hjj/Desktop/dataset/dataset_coco/coco/images/val2017', 'result')

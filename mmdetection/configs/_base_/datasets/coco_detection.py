@@ -1,6 +1,7 @@
 # dataset settings
 dataset_type = 'CocoDataset'
-data_root = '/root/dataset/for31-weatherv2/images'
+#data_root = '/root/dataset/for31-weatherv2/images'
+data_root = 'C:/ProgramData/lsh-dataset/for31-weatherv2/images'
 
 # Example to use different file client
 # Method 1: simply set the data root and let the file I/O module
