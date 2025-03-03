@@ -14,7 +14,7 @@ def parse_args():
     conf_dir =  '/root/python-project/mmdetection/configs/a_myconfig/myconfig.py'
     #conf_dir = r'E:/lsh/python-project/mmdetection/configs/a_myconfig/myconfig.py'
 
-    save_dir = r'root/autodl-tmp/mmdec/faster-rcnn'
+    save_dir = r'root/autodl-tmp/mmdec/dab-detr'
     #save_dir = r'E:/lsh/mmdec/dab-detr'
 
     parser = argparse.ArgumentParser(description='Train a detector')
