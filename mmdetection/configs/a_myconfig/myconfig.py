@@ -1,12 +1,12 @@
 _base_ = [
-    '../dab_detr/dab-detr_r50_8xb2-50e_coco.py'
+    '../deformable_detr/deformable-detr_r50_16xb2-50e_coco.py'
 ]
 
 
 # dataset settings
 dataset_type = 'CocoDataset'
-#data_root = '/root/dataset/for31-weatherv2/images'
-data_root = 'C:/ProgramData/lsh-dataset/for31-weatherv2/images'
+data_root = '/root/dataset/for31-weatherv2/images'
+#data_root = 'C:/ProgramData/lsh-dataset/for31-weatherv2/images'
 
 backend_args = None
 
@@ -21,7 +21,7 @@ test_cfg = dict(type='TestLoop')
 
 # batch size, num workers
 train_dataloader = dict(
-    batch_size=8,
+    batch_size=4,
     num_workers=2)
 
 

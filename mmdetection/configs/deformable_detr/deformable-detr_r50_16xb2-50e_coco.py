@@ -22,7 +22,8 @@ model = dict(
         norm_cfg=dict(type='BN', requires_grad=False),
         norm_eval=True,
         style='pytorch',
-        init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet50')),
+        init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet50')
+    ),
     neck=dict(
         type='ChannelMapper',
         in_channels=[512, 1024, 2048],
@@ -57,7 +58,7 @@ model = dict(
     positional_encoding=dict(num_feats=128, normalize=True, offset=-0.5),
     bbox_head=dict(
         type='DeformableDETRHead',
-        num_classes=80,
+        num_classes=31,
         sync_cls_avg_factor=True,
         loss_cls=dict(
             type='FocalLoss',

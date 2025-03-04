@@ -11,11 +11,11 @@ from mmdet.utils import setup_cache_size_limit_of_dynamo
 
 
 def parse_args():
-    #conf_dir =  '/root/python-project/mmdetection/configs/a_myconfig/myconfig.py'
-    conf_dir = r'E:/lsh/python-project/mmdetection/configs/a_myconfig/myconfig.py'
+    conf_dir =  '/root/python-project/mmdetection/configs/a_myconfig/myconfig.py'
+    #conf_dir = r'E:/lsh/python-project/mmdetection/configs/a_myconfig/myconfig.py'
 
-    #save_dir = r'/root/autodl-tmp/mmdec/dab-detr'
-    save_dir = r'E:/lsh/mmdec/dab-detr'
+    save_dir = r'/root/autodl-tmp/mmdec/deformable-detr'
+    #save_dir = r'E:/lsh/mmdec/dab-detr'
 
     parser = argparse.ArgumentParser(description='Train a detector')
 
