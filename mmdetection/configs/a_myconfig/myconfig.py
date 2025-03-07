@@ -1,12 +1,12 @@
 _base_ = [
-    '../deformable_detr/deformable-detr_r50_16xb2-50e_coco.py'
+    '../configs/centernet/centernet-update_r50-caffe_fpn_ms-1x_coco.py'
 ]
 
 
 # dataset settings
 dataset_type = 'CocoDataset'
-data_root = '/root/dataset/for31-weatherv2/images'
-#data_root = 'C:/ProgramData/lsh-dataset/for31-weatherv2/images'
+#data_root = '/root/dataset/for31-weatherv2/images'
+data_root = 'C:/ProgramData/lsh-dataset/for31-weatherv2/images'
 
 backend_args = None
 
@@ -21,7 +21,7 @@ test_cfg = dict(type='TestLoop')
 
 # batch size, num workers
 train_dataloader = dict(
-    batch_size=4,
+    batch_size=16,
     num_workers=2)
 
 

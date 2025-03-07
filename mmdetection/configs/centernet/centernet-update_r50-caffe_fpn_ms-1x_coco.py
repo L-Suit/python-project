@@ -21,9 +21,10 @@ model = dict(
         norm_cfg=dict(type='BN', requires_grad=False),
         norm_eval=True,
         style='caffe',
-        init_cfg=dict(
-            type='Pretrained',
-            checkpoint='open-mmlab://detectron2/resnet50_caffe')),
+        # init_cfg=dict(
+        #     type='Pretrained',
+        #     checkpoint='open-mmlab://detectron2/resnet50_caffe')
+    ),
     neck=dict(
         type='FPN',
         in_channels=[256, 512, 1024, 2048],
@@ -37,7 +38,7 @@ model = dict(
         relu_before_extra_convs=True),
     bbox_head=dict(
         type='CenterNetUpdateHead',
-        num_classes=80,
+        num_classes=31,
         in_channels=256,
         stacked_convs=4,
         feat_channels=256,
