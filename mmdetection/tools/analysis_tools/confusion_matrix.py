@@ -284,9 +284,9 @@ def main():
     print('Precision', precision)
     print('Recall', recall)
 
-    # print('TP:', TP)
-    # print('FP:', FP)
-    # print('FN', FN)
+    print('TP:', TP)
+    print('FP:', FP)
+    print('FN', FN)
 
 
 if __name__ == '__main__':
