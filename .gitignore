@@ -9,6 +9,7 @@ cam_result/
 数据集/*.csv
 work_dirs/
 mmdetection/result
+对比图绘制/*.png
 
 
 # 配置文件
