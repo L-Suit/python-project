@@ -18,9 +18,12 @@ def plot_metrics_and_loss(experiment_names, metrics_info, loss_info, metrics_sub
             column_name = [col for col in data.columns if col.strip() == metric_name][0]
             plt.plot(data[column_name], label=name)
         plt.xlabel('Epoch',fontsize=22)
+        ylabel = metric_name[8:]
+        plt.ylabel(ylabel[:-3],fontsize=22)
         plt.title(title,fontsize=22)
-        plt.legend(fontsize=14)
+        plt.legend(fontsize=19)
         plt.tick_params(axis='both', which='major', labelsize=17)
+        plt.grid(True)
     plt.tight_layout()
     metrics_filename = 'metrics_curves.png'
     plt.savefig(metrics_filename,dpi=400)
@@ -36,9 +39,11 @@ def plot_metrics_and_loss(experiment_names, metrics_info, loss_info, metrics_sub
             column_name = [col for col in data.columns if col.strip() == loss_name][0]
             plt.plot(data[column_name], label=name)
         plt.xlabel('Epoch',fontsize=22)
+        plt.ylabel('Loss',fontsize=22)
         plt.title(title,fontsize=22)
-        plt.legend(fontsize=14)
+        plt.legend(fontsize=19)
         plt.tick_params(axis='both', which='major', labelsize=17)
+        plt.grid(True)
     plt.tight_layout()
     loss_filename = 'loss_curves.png'
     plt.savefig(loss_filename,dpi=400)
